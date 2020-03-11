@@ -1,0 +1,41 @@
+<div class="container">
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h3>Transacciones</h3>
+        </div>
+        <div class="card-body">
+            <div class="row"> 
+                <div class="col-md-4">Fecha</div>
+                <div class="col-md-2">Monto</div>
+                <div class="col-md-4">Descripcion</div>
+            </div>
+            <div class="row" 
+                [ngClass]="{
+                    'entrada': (transaccion.tipo == 'E')
+                }"
+                *ngFor="let transaccion of transacciones">
+                <div class="col-md-4">{{transaccion.fecha | date}}</div>
+                <div class="col-md-2">{{transaccion.monto}}</div>
+                <div class="col-md-4">
+                    <small class="badge badge-pill badge-primary">
+                        {{transaccion.categoria}}
+                    </small>
+                    {{transaccion.descripcion}}
+                </div>
+                <div class="col-md-2 text-right">
+                    <button class="btn-warning">
+                        <span class="icon-edit"></span>
+                    </button>
+                    <button class="btn-danger">
+                        <span class="icon-cancel-circled2"></span>
+                    </button>
+                </div>
+            </div>
+                    
+            <a type="button" href='/agregar' class="btn btn-primary nuevo">
+                <span class="icon-plus"></span>
+            </a>
+        </div>
+    </div>
+</div>

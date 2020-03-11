@@ -1,0 +1,20 @@
+.header-principal {
+    background-color: #065ec9;
+    color: white;
+}
+
+.header-principal h1 {
+    margin-bottom: 0;
+}
+
+
+.menu-principal {
+    background-color:#6dadfc;
+    color: white;
+}
+
+.menu-principal button {
+    color: white;
+    border-color: white;
+}
+

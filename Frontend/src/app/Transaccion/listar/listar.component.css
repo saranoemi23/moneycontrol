@@ -1,0 +1,18 @@
+.nuevo {
+    border-radius: 100%;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    text-align: center;
+    padding: 0;
+    color: white;
+
+}
+
+.row.entrada {
+    background-color: #dbfff2;
+    font-weight: bold;
+}
