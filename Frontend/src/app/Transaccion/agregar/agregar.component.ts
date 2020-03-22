@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { config } from '../../../config';
 
 import axios from "axios";
-const URL="http://localhost:3000/transacciones"
-const URL_categorias="http://localhost:3000/categorias"
+const URL= config.backendURL() + "/transacciones"
+const URL_categorias= config.backendURL() + "/categorias"
+
+console.log(URL);
 
 @Component({
   selector: 'app-agregar',

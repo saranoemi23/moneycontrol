@@ -1,9 +1,11 @@
 const mysql = require("mysql");
 
+const password = process.env.MONEY_APP_DB_PASSWORD || 'rootroot';
+
 var connection = mysql.createConnection({
     host: 'localhost', 
     user: 'root',
-    password: 'rootroot',
+    password: password,
     database: 'money_control',
     multipleStatements: true
 })

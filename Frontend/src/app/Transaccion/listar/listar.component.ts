@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import axios from "axios";
-const URL="http://localhost:3000/transacciones"
+
+import { config } from '../../../config';
+
+const URL= config.backendURL() + "/transacciones"
 
 @Component({
   selector: 'app-listar',

@@ -5,7 +5,9 @@ const connection = require("../conection");
 Router.get('/get', (req, res) => {
     console.log("Seleccionar todas las transacciones")
 
-    const queryString = `select t.id, t.tipo, t.fecha, t.monto, c.descripcion as categoria, t.descripcion from transaccion t
+    const queryString = `select t.id, t.tipo, t.fecha, t.monto, 
+                            c.descripcion as categoria, 
+                            t.descripcion from transaccion t
                             inner join categoria c on t.id_categoria = c.id`
 
     connection.query(queryString,(err, rows, fields) => {
@@ -54,7 +56,8 @@ Router.post('/add', (req, res) =>{
     const id_categoria = req.body.id_categoria
     const id_usuario = 1; // TODO: implementar usuarios
 
-    const queryString = "INSERT INTO TRANSACCION (tipo, fecha, descripcion, monto, id_categoria, id_usuario)  VALUES  (?,?,?,?,?,?)"
+    const queryString = `INSERT INTO TRANSACCION (tipo, fecha, descripcion, 
+                            monto, id_categoria, id_usuario)  VALUES  (?,?,?,?,?,?)`
     connection.query(queryString, [tipo, fecha, descripcion, monto, id_categoria, id_usuario], (err, results, fields) =>{
         if (err){
             console.log("Error al agregar la transaccion: "+ err)
@@ -86,7 +89,8 @@ Router.put('/edit/:id', (req, res) =>{
     const id_usuario = '';
 
     console.log(id)
-    const queryString = "UPDATE transaccion SET tipo = ?, fecha = ?, descripcion = ?, monto = ?, id_categoria = ?, id_usuario = ? WHERE id = ?"
+    const queryString = `UPDATE transaccion SET tipo = ?, fecha = ?, descripcion = ?, 
+                            monto = ?, id_categoria = ?, id_usuario = ? WHERE id = ?`
     connection.query(queryString, [tipo, fecha, descripcion, monto, id_categoria, id_usuario, id], (err, results, fields) =>{
         if (err){
             console.log("Error al editar la transaccion: "+ err)
