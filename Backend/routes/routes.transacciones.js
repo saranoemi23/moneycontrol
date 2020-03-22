@@ -27,7 +27,7 @@ Router.get('/get/:id', (req, res) => {
     console.log("Seleccionar transaccion con id: "+ req.params.id)
 
     const ID= req.params.id
-    const queryString = "SELECT * FROM TRANSACCION WHERE ID = ?"
+    const queryString = "select * from transaccion where id = ?"
     connection.query(queryString, [ID],(err, rows, fields) => {
         if(err){
             console.log("No existe una transaccion " + err)
@@ -56,8 +56,8 @@ Router.post('/add', (req, res) =>{
     const id_categoria = req.body.id_categoria
     const id_usuario = 1; // TODO: implementar usuarios
 
-    const queryString = `INSERT INTO TRANSACCION (tipo, fecha, descripcion, 
-                            monto, id_categoria, id_usuario)  VALUES  (?,?,?,?,?,?)`
+    const queryString = `insert into transaccion  (tipo, fecha, descripcion, 
+                            monto, id_categoria, id_usuario)  values  (?,?,?,?,?,?)`
     connection.query(queryString, [tipo, fecha, descripcion, monto, id_categoria, id_usuario], (err, results, fields) =>{
         if (err){
             console.log("Error al agregar la transaccion: "+ err)
@@ -89,8 +89,8 @@ Router.put('/edit/:id', (req, res) =>{
     const id_usuario = '';
 
     console.log(id)
-    const queryString = `UPDATE transaccion SET tipo = ?, fecha = ?, descripcion = ?, 
-                            monto = ?, id_categoria = ?, id_usuario = ? WHERE id = ?`
+    const queryString = `update transaccion set tipo = ?, fecha = ?, descripcion = ?, 
+                            monto = ?, id_categoria = ?, id_usuario = ? where id = ?`
     connection.query(queryString, [tipo, fecha, descripcion, monto, id_categoria, id_usuario, id], (err, results, fields) =>{
         if (err){
             console.log("Error al editar la transaccion: "+ err)
@@ -108,7 +108,7 @@ Router.delete('/delete/:id', (req, res) => {
     console.log("Eliminar transaccion con id: "+ req.params.id)
 
     const id = req.params.id
-    const queryString = "DELETE FROM transaccion WHERE id =?"
+    const queryString = "delete from transaccion where id =?"
     connection.query(queryString, [id],(err, rows, fields) => {
         if(err){
             console.log("No existe transaccion " + err)
