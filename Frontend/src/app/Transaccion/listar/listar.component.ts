@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import axios from "axios";
 
-import { config } from '../../../config';
+import { config } from './../../../config';
 
 const URL= config.backendURL() + "/transacciones"
 
@@ -14,7 +16,9 @@ export class ListarComponent implements OnInit {
 
   transacciones = []
 
-  constructor() { }
+  constructor(private router:Router) {
+    console.log('ListarComponent');
+  }
 
   ngOnInit() {
     this.cargarDatos();
@@ -27,5 +31,8 @@ export class ListarComponent implements OnInit {
     })
   }
 
-  
+  nueva() {
+    this.router.navigate(['transacciones', 'agregar']);
+  }
+
 }

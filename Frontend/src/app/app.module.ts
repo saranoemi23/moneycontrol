@@ -1,24 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {RouterModule, Routes} from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
+import { MainModule } from './Main/main.module';
+import { LoginModule } from './Login/login.module';
+
 import { AppComponent } from './app.component';
-import { ListarComponent } from './Transaccion/listar/listar.component';
-import { AgregarComponent } from './Transaccion/agregar/agregar.component';
-import { EditarComponent } from './Transaccion/editar/editar.component';
+
+const routes: Routes = [
+];
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListarComponent,
-    AgregarComponent,
-    EditarComponent
   ],
   imports: [
+    RouterModule.forChild(routes),
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    MainModule,
+    LoginModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

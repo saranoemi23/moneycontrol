@@ -1,16 +1,32 @@
 const express = require("express");
 const Router = express.Router();
-const connection = require("../conection");
+
+Router.use(function (req, res, next) {
+    const usuario = req.session.userId;
+    // si no está logueado, no seguir
+    if (!usuario) {
+        res.sendStatus(403);
+        return res.end();
+    }
+    next();
+})
 
 Router.get('/get', (req, res) => {
+    const connection = req.app.get('connection');
+    const usuario = req.session.userId;
+
     console.log("Seleccionar todas las transacciones")
 
-    const queryString = `select t.id, t.tipo, t.fecha, t.monto, 
-                            c.descripcion as categoria, 
+    const queryString = `select t.id, t.tipo, t.fecha, t.monto,
+                            c.descripcion as categoria,
                             t.descripcion from transaccion t
-                            inner join categoria c on t.id_categoria = c.id`
+                            inner join categoria c on t.id_categoria = c.id
+                            where id_usuario = ?`;
 
-    connection.query(queryString,(err, rows, fields) => {
+    console.log('usuario', usuario);
+
+
+    connection.query(queryString, [usuario], (err, rows, fields) => {
         if(err){
             console.log("No hay transacciones " + err)
             res.sendStatus(500)
@@ -24,6 +40,8 @@ Router.get('/get', (req, res) => {
 
 //Transaccion x ID
 Router.get('/get/:id', (req, res) => {
+    const connection = req.app.get('connection');
+
     console.log("Seleccionar transaccion con id: "+ req.params.id)
 
     const ID= req.params.id
@@ -41,6 +59,7 @@ Router.get('/get/:id', (req, res) => {
 });
 
 Router.post('/add', (req, res) =>{
+    const connection = req.app.get('connection');
 
     console.log("Tratando de agregar transaccion..")
     console.log("tipo: "+ req.body.tipo)
@@ -48,13 +67,13 @@ Router.post('/add', (req, res) =>{
     console.log("descripcion: "+ req.body.descripcion)
     console.log("monto: "+ req.body.monto)
     console.log("id_categoria: "+ req.body.id_categoria)
-   
+
     const tipo = req.body.tipo
     const fecha = req.body.fecha
     const descripcion = req.body.descripcion
     const monto = req.body.monto
     const id_categoria = req.body.id_categoria
-    const id_usuario = 1; // TODO: implementar usuarios
+    const id_usuario = req.session.userId;
 
     const queryString = `insert into transaccion  (tipo, fecha, descripcion, 
                             monto, id_categoria, id_usuario)  values  (?,?,?,?,?,?)`
@@ -66,12 +85,13 @@ Router.post('/add', (req, res) =>{
         }
 
         console.log("Se agrego transaccion con id: ", results.insertId);
-        res.end() 
-        
+        res.end()
+
     } )
 });
 
 Router.put('/edit/:id', (req, res) =>{
+    const connection = req.app.get('connection');
 
     console.log("Tratando de agregar transaccion..")
     console.log("tipo: "+ req.body.tipo)
@@ -79,14 +99,14 @@ Router.put('/edit/:id', (req, res) =>{
     console.log("descripcion: "+ req.body.descripcion)
     console.log("monto: "+ req.body.monto)
     console.log("id_categoria: "+ req.body.id_categoria)
-   
+
     const id = req.body.id
     const tipo = req.body.transaccion
     const fecha = req.body.fecha
     const descripcion = req.body.descripcion
     const monto = req.body.monto
     const id_categoria = req.body.id_categoria
-    const id_usuario = '';
+    const id_usuario = req.session.userId;
 
     console.log(id)
     const queryString = `update transaccion set tipo = ?, fecha = ?, descripcion = ?, 
@@ -99,12 +119,14 @@ Router.put('/edit/:id', (req, res) =>{
         }
 
         console.log("Se edito la transaccion con id: ", results.affectedRows);
-        res.end() 
-        
+        res.end()
+
     } )
 });
 
 Router.delete('/delete/:id', (req, res) => {
+    const connection = req.app.get('connection');
+
     console.log("Eliminar transaccion con id: "+ req.params.id)
 
     const id = req.params.id

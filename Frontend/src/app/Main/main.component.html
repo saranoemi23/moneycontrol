@@ -1,0 +1,31 @@
+<div class="header-principal" style="text-align: center;">
+  <h1>
+    Money Control App
+  </h1>
+  <h1>
+    <progress id="file" value="3000" max="7000"></progress>
+  </h1>
+  <h6 class="text-center">
+    Entradas HNL0.00 - Salidas HNL0.00
+  </h6>
+  <h1>
+    <span class="icon-money"></span>
+  </h1>
+</div>
+
+<div class="menu-principal">
+  <div class="container">
+    <br>
+    <button (click)="Entrada()" class="btn btn-outline-primary">
+      <span class="icon-down-open">Entradas</span>
+    </button>
+    <button (click)="Salida()" class="btn btn-outline-primary" style="margin-left: 10px;">
+      <span class="icon-up-open">Salidas</span>
+    </button>
+    <button (click)="Transaccion()" class="btn btn-outline-primary" style="margin-left: 10px;">Transacciones</button>
+    <br>
+    <br>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

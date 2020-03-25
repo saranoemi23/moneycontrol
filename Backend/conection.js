@@ -2,13 +2,15 @@ const mysql = require("mysql");
 
 const password = process.env.MONEY_APP_DB_PASSWORD || 'rootroot';
 
-var connection = mysql.createConnection({
-    host: 'localhost', 
+const options = {
+    host: 'localhost',
     user: 'root',
     password: password,
     database: 'money_control',
     multipleStatements: true
-})
+};
+
+var connection = mysql.createConnection(options)
 
 connection.connect((err) =>{
     if(!err){
@@ -20,4 +22,4 @@ connection.connect((err) =>{
 
 })
 
-module.exports = connection;
+module.exports = { connection, options };

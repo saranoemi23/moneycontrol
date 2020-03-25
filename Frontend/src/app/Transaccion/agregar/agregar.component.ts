@@ -5,8 +5,6 @@ import axios from "axios";
 const URL= config.backendURL() + "/transacciones"
 const URL_categorias= config.backendURL() + "/categorias"
 
-console.log(URL);
-
 @Component({
   selector: 'app-agregar',
   templateUrl: './agregar.component.html',
@@ -23,7 +21,7 @@ export class AgregarComponent implements OnInit {
   descripcion='';
   
   constructor() {
-
+    console.log('AgregarComponent');
     this.cargarFecha();
     this.cargarDatos();
   }

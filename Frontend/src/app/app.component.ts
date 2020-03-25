@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ListarComponent } from './Transaccion/listar/listar.component';
-//import { NuevoComponent } from './Transaccion/listar/add.component';
-
+import axios from 'axios';
+import { config } from '../config';
+const URL = config.backendURL() + "/usuarios/session";
 
 @Component({
   selector: 'app-root',
@@ -12,12 +12,38 @@ import { ListarComponent } from './Transaccion/listar/listar.component';
 export class AppComponent {
   title = 'MoneyControlApp';
 
-  constructor(private router:Router){}
+  constructor(private router:Router){
+    console.log('AppComponent');
 
-  listar(){
-    this.router.navigate(["listar"]);
- }
-  Nuevo(){
-    this.router.navigate(["add"]);
+    if (router.url == '/') {
+      this.redireccionar(router);
+    }
+
+  }
+
+  redireccionar(router) {
+    this.comprobarSession()
+      .then(userId => {
+
+        let ventanaLogin = router.url.indexOf('/login') > -1;
+
+        // si no hay usuario logueado, pero no está en el login
+        if (!userId && !ventanaLogin) {
+          router.navigate(['login', 'entrar']);
+        }
+
+        // si hay un usuario logueado
+        if (userId) {
+          router.navigate(['transacciones', 'listar']);
+        }
+      });
+  }
+
+  comprobarSession() {
+    return axios(URL, {
+      method: 'get',
+      withCredentials: true,
+    })
+    .then(request => request.data.userId)
   }
 }

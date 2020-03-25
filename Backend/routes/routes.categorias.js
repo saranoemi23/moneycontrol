@@ -1,8 +1,19 @@
 const express = require("express");
 const Router = express.Router();
-const connection = require("../conection");
+
+Router.use(function (req, res, next) {
+    const usuario = req.session.userId;
+    // si no está logueado, no seguir
+    if (!usuario) {
+        res.sendStatus(403);
+        return res.end();
+    }
+    next();
+})
 
 Router.get('/get', (req, res) => {
+    const connection = req.app.get('connection');
+
     console.log("Seleccionar todas las categorias")
 
     const queryString = `select id, descripcion from categoria`
