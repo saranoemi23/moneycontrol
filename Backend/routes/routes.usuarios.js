@@ -49,4 +49,10 @@ Router.get('/session', (req, res) => {
 
 });
 
+
+Router.get('/cerrarsesion', (req, res) => {
+  req.session.userId = '';
+  return res.json({});
+});
+
 module.exports = Router;

@@ -15,13 +15,25 @@ Router.get('/get', (req, res) => {
     const connection = req.app.get('connection');
     const usuario = req.session.userId;
 
-    console.log("Seleccionar todas las transacciones")
+    const tipo = req.query.tipo;
+
+    let filtroTipo = '';
+
+    if (tipo == 'S') {
+        filtroTipo = "and t.tipo = 'S' ";
+    } else
+    if (tipo == 'E') {
+        filtroTipo = "and t.tipo = 'E' ";
+    }
+
+    console.log("Seleccionar todas las transacciones");
 
     const queryString = `select t.id, t.tipo, t.fecha, t.monto,
                             c.descripcion as categoria,
                             t.descripcion from transaccion t
                             inner join categoria c on t.id_categoria = c.id
-                            where id_usuario = ?`;
+                            where id_usuario = ?
+                            ${filtroTipo}`;
 
     console.log('usuario', usuario);
 

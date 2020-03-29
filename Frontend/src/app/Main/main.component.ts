@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import axios from 'axios';
+import { config } from '../../config';
+const URL = config.backendURL() + "/usuarios";
 
 @Component({
   selector: 'app-main',
@@ -16,9 +19,20 @@ export class MainComponent implements OnInit {
   ngOnInit() {
   }
 
-  Entrada() {}
-  Salida() {}
+  Entrada() {
+    this.router.navigate(['/transacciones', 'entradas']);
+  }
+  Salida() {
+    this.router.navigate(['/transacciones', 'salidas']);
+  }
   Transaccion() {
-    this.router.navigate(['transacciones', 'listar']);
+    this.router.navigate(['/transacciones', 'listar']);
+  }
+
+  CerrarSesion() {
+    axios.get(URL + '/cerrarsesion')
+    .then(()=> {
+      location.reload();
+    })
   }
 }

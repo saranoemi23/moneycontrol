@@ -10,6 +10,8 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       { path: 'listar', component: ListarComponent},
+      { path: 'entradas', component: ListarComponent},
+      { path: 'salidas', component: ListarComponent},
       { path: 'agregar', component: AgregarComponent}
     ]
   },

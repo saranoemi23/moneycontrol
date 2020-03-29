@@ -15,17 +15,32 @@ const URL= config.backendURL() + "/transacciones"
 export class ListarComponent implements OnInit {
 
   transacciones = []
+  titulo = 'Transacciones';
 
   constructor(private router:Router) {
-    console.log('ListarComponent');
   }
 
   ngOnInit() {
+
+    let tipo = getTipo(this.router.url);
+    if (tipo == 'E') {
+      this.titulo = "Entradas";
+    }
+
+    if (tipo == 'S') {
+      this.titulo = "Salidas";
+    }
+
     this.cargarDatos();
+
   }
 
   cargarDatos() {
-    axios.get(URL + '/get')
+    let tipo = getTipo(this.router.url);
+
+    axios.get(URL + '/get', {
+      params: { tipo: tipo }
+    })
     .then(request => {
       this.transacciones = request.data;
     })
@@ -35,4 +50,15 @@ export class ListarComponent implements OnInit {
     this.router.navigate(['transacciones', 'agregar']);
   }
 
+}
+
+function getTipo(url) {
+  if (url.indexOf('entradas') > 0) {
+    return 'E';
+  } else
+  if (url.indexOf('salidas') > 0) {
+    return 'S';
+  } else {
+    return '';
+  }
 }
