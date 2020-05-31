@@ -6,7 +6,6 @@ import { MainComponent } from './main.component';
 import { CategoriasComponent } from '../Categoria/categoria.component';
 import { AlertasComponent } from '../Alerta/alerta.component';
 
-
 const routes: Routes = [
   {
     path: 'transacciones',
