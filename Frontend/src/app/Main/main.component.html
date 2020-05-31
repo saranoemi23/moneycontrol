@@ -18,20 +18,23 @@
 <div class="menu-principal">
   <div class="container">
     <br>
-    <button (click)="Entrada()" class="btn btn-outline-primary">
+    <button (click)="Transaccion()" class="btn btn-outline-primary" >
+      <span class="icon-list">Transacciones</span>
+    </button>
+    <button (click)="Entrada()" class="btn btn-outline-primary" style="margin-left: 10px;">
       <span class="icon-down">Entradas</span>
     </button>
     <button (click)="Salida()" class="btn btn-outline-primary" style="margin-left: 10px;">
       <span class="icon-up">Salidas</span>
-    </button>
-    <button (click)="Transaccion()" class="btn btn-outline-primary" style="margin-left: 10px;">
-      <span class="icon-list">Transacciones</span>
     </button>
     <button (click)="Categorias()" class="btn btn-outline-primary" style="margin-left: 10px;">
       <span class="icon-layers">Presupuestos</span>
     </button>
     <button (click)="Alertas()" class="btn btn-outline-primary" style="margin-left: 10px;">
       <span class="icon-bell">Alertas</span>
+    </button>
+    <button (click)="Transaccion()" class="btn btn-outline-primary" style="margin-left: 10px;">
+      <span class="icon-credit-card">Tarjetas</span>
     </button>
     <div class="float-right">
       <button (click)="CerrarSesion()" class="btn btn-outline-primary">

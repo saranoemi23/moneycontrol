@@ -107,6 +107,24 @@
       "css": "layers",
       "code": 59408,
       "src": "iconic"
+    },
+    {
+      "uid": "5f1e8c36dffb553902e0e5c0c71faf6b",
+      "css": "credit-card",
+      "code": 59410,
+      "src": "maki"
+    },
+    {
+      "uid": "8c9fbdd92132007cf2f5e13b7ecb38f0",
+      "css": "credit-card-1",
+      "code": 59409,
+      "src": "elusive"
+    },
+    {
+      "uid": "5adef5b3275fcd874b0815a0637c5800",
+      "css": "login",
+      "code": 61484,
+      "src": "mfglabs"
     }
   ]
 }
