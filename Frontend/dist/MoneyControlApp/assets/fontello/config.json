@@ -53,6 +53,78 @@
       "css": "money",
       "code": 59399,
       "src": "modernpics"
+    },
+    {
+      "uid": "2c5335c6e56b876139d7a58ab2f4b2fe",
+      "css": "bell",
+      "code": 59400,
+      "src": "entypo"
+    },
+    {
+      "uid": "abf264d54e3f10187167ebc0e833d12e",
+      "css": "up-outline",
+      "code": 59402,
+      "src": "typicons"
+    },
+    {
+      "uid": "ef47651da3866460f27baf85ae234e5c",
+      "css": "list",
+      "code": 59403,
+      "src": "iconic"
+    },
+    {
+      "uid": "3838a5aba604532d2dbae5904615ea39",
+      "css": "down",
+      "code": 59404,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "040e72500c863813088c9f9c9415f8e9",
+      "css": "up",
+      "code": 59405,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "1d9b2bb0d0621cd616139c6a441ed442",
+      "css": "down-outline",
+      "code": 59401,
+      "src": "typicons"
+    },
+    {
+      "uid": "bczb7qup4axmc490xmuuv8qdhcnbgeyf",
+      "css": "user",
+      "code": 59406,
+      "src": "typicons"
+    },
+    {
+      "uid": "cb89a11fa3722b7648ce26f40aaed8f0",
+      "css": "website",
+      "code": 59407,
+      "src": "elusive"
+    },
+    {
+      "uid": "d2c499942f8a7c037d5a94f123eeb478",
+      "css": "layers",
+      "code": 59408,
+      "src": "iconic"
+    },
+    {
+      "uid": "5f1e8c36dffb553902e0e5c0c71faf6b",
+      "css": "credit-card",
+      "code": 59410,
+      "src": "maki"
+    },
+    {
+      "uid": "8c9fbdd92132007cf2f5e13b7ecb38f0",
+      "css": "credit-card-1",
+      "code": 59409,
+      "src": "elusive"
+    },
+    {
+      "uid": "5adef5b3275fcd874b0815a0637c5800",
+      "css": "login",
+      "code": 61484,
+      "src": "mfglabs"
     }
   ]
 }

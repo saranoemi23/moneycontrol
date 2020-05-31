@@ -4,7 +4,7 @@ import { ListarComponent } from '../Transaccion/listar/listar.component';
 import { AgregarComponent } from '../Transaccion/agregar/agregar.component';
 import { MainComponent } from './main.component';
 import { CategoriasComponent } from '../Categoria/categoria.component';
-import { AlertasComponent } from '../alerta/alerta.component';
+import { AlertasComponent } from '../Alerta/alerta.component';
 
 
 const routes: Routes = [
