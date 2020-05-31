@@ -37,6 +37,9 @@ export class MainComponent implements OnInit {
   Categorias() {
     this.router.navigate(['/categorias', 'listar']);
   }
+  Alertas() {
+    this.router.navigate(['/alertas', 'listar']);
+  }
   CerrarSesion() {
     axios.get(URL + '/cerrarsesion')
     .then(()=> {

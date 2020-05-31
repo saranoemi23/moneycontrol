@@ -17,6 +17,7 @@ app.set('trustproxy', true);
 const UsuariosRoutes = require('./routes/routes.usuarios');
 const TransaccionesRoutes = require('./routes/routes.transacciones');
 const CategoriasRoutes = require('./routes/routes.categorias');
+const AlertasRoutes = require('./routes/routes.alertas');
 
 let frontend = Path.join(__dirname,"../Frontend/dist/MoneyControlApp"); //ruta de los archivos que compile angular
 console.log(frontend);
@@ -38,6 +39,8 @@ app.use(cors({
 app.use('/api/usuarios', UsuariosRoutes);
 app.use('/api/transacciones', TransaccionesRoutes);
 app.use('/api/categorias', CategoriasRoutes);
+app.use('/api/alertas', AlertasRoutes);
+
 
 //si la ruta actual no esta configurada, se ejecuta por default ésta 
 app.get("/*", function(req, res){

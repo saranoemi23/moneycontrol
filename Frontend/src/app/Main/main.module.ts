@@ -11,6 +11,8 @@ import { ListarComponent } from '../Transaccion/listar/listar.component';
 import { AgregarComponent } from '../Transaccion/agregar/agregar.component';
 import { EditarComponent } from '../Transaccion/editar/editar.component';
 import { CategoriasComponent } from '../Categoria/categoria.component';
+import { AlertasComponent } from '../alerta/alerta.component';
+
 
 @NgModule({
   imports: [
@@ -24,6 +26,7 @@ import { CategoriasComponent } from '../Categoria/categoria.component';
     AgregarComponent,
     EditarComponent,
     CategoriasComponent,
+    AlertasComponent,
   ]
 })
 export class MainModule { }
