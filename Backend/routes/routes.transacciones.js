@@ -50,6 +50,35 @@ Router.get('/get', (req, res) => {
     })
 });
 
+Router.get('/total', (req, res) => {
+    const connection = req.app.get('connection');
+    const usuario = req.session.userId;
+
+    console.log("Seleccionar todas las transacciones");
+
+    const queryString = `select 	
+                                sum(case when t.tipo = 'E' then t.monto else 0 end) as entradas,
+                                sum(case when t.tipo = 'S' then t.monto else 0 end) as salidas
+                        from 	transaccion t
+                         inner join categoria c on t.id_categoria = c.id
+                        where 	id_usuario = ?;
+                            `;
+
+    console.log('usuario', usuario);
+
+
+    connection.query(queryString, [usuario], (err, rows, fields) => {
+        if(err){
+            console.log("No hay transacciones " + err)
+            res.sendStatus(500)
+            res.end()
+            return
+        }
+        console.log("Transacciones Seleccionadas")
+        res.json(rows[0])
+    })
+});
+
 //Transaccion x ID
 Router.get('/get/:id', (req, res) => {
     const connection = req.app.get('connection');
@@ -57,7 +86,9 @@ Router.get('/get/:id', (req, res) => {
     console.log("Seleccionar transaccion con id: "+ req.params.id)
 
     const ID= req.params.id
-    const queryString = "select * from transaccion where id = ?"
+    const queryString = `select 	id, tipo, DATE_FORMAT(fecha, "%Y-%m-%d") as fecha, 
+                                    descripcion, monto, id_usuario, id_categoria
+                        from 	    transaccion where id = ?;`
     connection.query(queryString, [ID],(err, rows, fields) => {
         if(err){
             console.log("No existe una transaccion " + err)
@@ -102,7 +133,7 @@ Router.post('/add', (req, res) =>{
     } )
 });
 
-Router.put('/edit/:id', (req, res) =>{
+Router.post('/edit/:id', (req, res) =>{
     const connection = req.app.get('connection');
 
     console.log("Tratando de agregar transaccion..")

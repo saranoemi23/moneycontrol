@@ -8,15 +8,13 @@
             <div class="row"> 
                 <div class="col-md-4">Fecha</div>
                 <div class="col-md-2">Monto</div>
-                <div class="col-md-4">Descripcion</div>
+                <div class="col-md-4">Descripción</div>
             </div>
             <div class="row" 
-                [ngClass]="{
-                    'entrada': (transaccion.tipo == 'E')
-                }"
+                [ngClass]="{ 'entrada': (transaccion.tipo == 'E')}"
                 *ngFor="let transaccion of transacciones">
                 <div class="col-md-4">{{transaccion.fecha | date}}</div>
-                <div class="col-md-2">{{transaccion.monto}}</div>
+                <div class="col-md-2">{{transaccion.monto |  currency: 'L. ' }}</div>
                 <div class="col-md-4">
                     <small class="badge badge-pill badge-primary">
                         {{transaccion.categoria}}
@@ -24,10 +22,10 @@
                     {{transaccion.descripcion}}
                 </div>
                 <div class="col-md-2 text-right">
-                    <button class="btn-warning">
+                    <button (click)="editar(transaccion.id)" class="btn-warning">
                         <span class="icon-edit"></span>
                     </button>
-                    <button class="btn-danger">
+                    <button (click)="eliminar(transaccion.id)" class="btn-danger">
                         <span class="icon-cancel-circled2"></span>
                     </button>
                 </div>
@@ -36,6 +34,13 @@
             <a type="button" (click)="nueva()" class="btn btn-primary nuevo">
                 <span class="icon-plus"></span>
             </a>
+        </div>
+        <div class="card-header">
+            <div class="row"> 
+                <div class="col-md-4">Total</div>
+                <div class="col-md-2">{{ total |  currency: 'L. ' }}</div>
+                <div class="col-md-4"></div>
+            </div>
         </div>
     </div>
 </div>

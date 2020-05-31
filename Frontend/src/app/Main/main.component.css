@@ -18,3 +18,9 @@
     border-color: white;
 }
 
+progress[value]::-webkit-progress-value::before {
+    content: '80%';
+    position: absolute;
+    right: 0;
+    top: -125%;
+  }

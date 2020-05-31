@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { config } from '../../../config';
 
 import axios from "axios";
+import { ActivatedRoute } from '@angular/router';
 const URL= config.backendURL() + "/transacciones"
 const URL_categorias= config.backendURL() + "/categorias"
 
@@ -16,14 +17,18 @@ export class AgregarComponent implements OnInit {
 
   tipo='S';
   monto=0.00;
-  id_categoria = '';
+  id_categoria = 0;
   fecha= '';
   descripcion='';
+  id: 0;
   
-  constructor() {
-    console.log('AgregarComponent');
-    this.cargarFecha();
-    this.cargarDatos();
+
+  constructor(private activatedRoute: ActivatedRoute){
+   
+    let id = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log('id',id);
+     this.cargarDatos(id);
+     this.cargarFecha();
   }
 
   ngOnInit() {
@@ -51,10 +56,24 @@ export class AgregarComponent implements OnInit {
     this.tipo = valor;
   }
 
-  cargarDatos() {
+  cargarDatos(id) {
     axios.get(URL_categorias + '/get')
     .then(request => {
       this.categorias = request.data;
+      console.log(this.categorias);
+    })
+
+    if (!id) return
+    axios.get(URL + '/get/' + id)
+    .then(request => {
+      console.log(request.data);
+      
+      this.id = request.data[0].id;
+      this.tipo = request.data[0].tipo
+      this.monto=request.data[0].monto;
+      this.id_categoria = request.data[0].id_categoria;
+      this.fecha= request.data[0].fecha;
+      this.descripcion=request.data[0].descripcion;
     })
   }
 
@@ -65,26 +84,34 @@ export class AgregarComponent implements OnInit {
     let c = this.id_categoria;
     let d = this.fecha;
     let e = this.descripcion;
+    let f = this.id;
+
+    let funcion = '';
+    if (this.id) {
+      funcion = '/edit/'+this.id
+    } else {
+      funcion = '/add'
+    }
 
     //Llama el api y agrega los datos
-    axios.post(URL + '/add', {
+    axios.post(URL + funcion, {
         tipo: a,
         monto: b,
-        id_categoria:c,
-        fecha:d,
-        descripcion:e
+        id_categoria: c,
+        fecha: d,
+        descripcion: e,
+        id: f
 
       })
-
+      
       // despues de guardar los datos
       .then(() => {
         alert('Guardado');
         location.href = '/';
       })
-
   }
-
 }
+
 
 function formatNum(n) {
   if (n < 10) {

@@ -29,13 +29,13 @@ export class AppComponent {
 
         // si no hay usuario logueado, pero no está en el login
         if (!userId && !ventanaLogin) {
-          router.navigate(['login', 'entrar']);
+          return router.navigate(['login', 'entrar']);
         }
-
         // si hay un usuario logueado
-        if (userId) {
-          router.navigate(['transacciones', 'listar']);
-        }
+        console.log('ruta', this.router.url)
+         if (this.router.url == '/') {
+           router.navigate(['transacciones', 'listar']);
+         }
       });
   }
 

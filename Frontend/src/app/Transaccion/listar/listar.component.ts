@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { Router } from '@angular/router';
 
 import axios from "axios";
@@ -16,6 +16,7 @@ export class ListarComponent implements OnInit {
 
   transacciones = []
   titulo = 'Transacciones';
+  total: number;
 
   constructor(private router:Router) {
   }
@@ -43,6 +44,24 @@ export class ListarComponent implements OnInit {
     })
     .then(request => {
       this.transacciones = request.data;
+      
+      let con = 0;
+      if (tipo != '') {
+        this.transacciones.forEach(transaccion => {
+          con = con + transaccion.monto;
+        })
+      }
+      else {
+        this.transacciones.forEach(transaccion => {
+          // con = con + transaccion.monto ;
+          if (transaccion.tipo == 'E') {
+            con = con + transaccion.monto ;
+          } else {
+            con = con - transaccion.monto ;
+          }
+        })
+      }
+      this.total = con;
     })
   }
 
@@ -50,6 +69,19 @@ export class ListarComponent implements OnInit {
     this.router.navigate(['transacciones', 'agregar']);
   }
 
+  editar(id) {
+    console.log("editar",id);
+    this.router.navigate(['transacciones', 'editar', id]); 
+  }
+
+  eliminar(id) {
+    if (confirm('Desea elimar registro?')) {
+      console.log("eliminar",id);
+    axios.delete(URL + '/delete/' + id).then(()=>{
+      this.cargarDatos();
+    })
+    }
+  }
 }
 
 function getTipo(url) {

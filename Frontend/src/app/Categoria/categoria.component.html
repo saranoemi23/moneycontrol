@@ -1,0 +1,77 @@
+
+<div class="container">
+    <br>
+    <div class="card">
+        <div class="card-header">
+            Categorias personalizadas
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="col-form-label" for="categorias">Categoria</label>
+                  <div class="controls">
+                    <div class="input-group">
+                          {{ca_descripcion}}            
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="col-form-label" for="categorias">Descripción</label>
+                    <div class="controls">
+                      <div class="input-group">
+                        <input type="text" class="form-control" [(ngModel)]="descripcion">     
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="col-form-label" for="categorias">Presupuesto</label>
+                    <div class="controls">
+                      <div class="input-group">
+                        <input type="number" class="form-control" [(ngModel)]="presupuesto">      
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <br>
+                <button class="btn btn-primary" (click)="guardarDatos()" >
+                  Guardar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            Categorías personalizadas
+        </div>
+        <div class="card-body">
+            <div class="row"> 
+                <div class="col-md-3">Descripción Original</div>
+                <div class="col-md-3">Descripción Personalizada</div>
+                <div class="col-md-3">Presupuesto</div>
+            </div>
+            <br>
+            <div class="row" *ngFor="let categoria of categorias">
+                <p class="col-md-3">{{categoria.ca_descripcion}}</p>
+                <p class="col-md-3">{{categoria.descripcion}}</p>
+                <p class="col-md-3">{{categoria.presupuesto}}</p>
+                <div class="col-md-3">
+                    <button class="btn-warning" (click)="editarDatos(categoria)">
+                        <span class="icon-edit"></span>
+                    </button>
+                    <button class="btn-danger">
+                        <span class="icon-cancel-circled2"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+</div>

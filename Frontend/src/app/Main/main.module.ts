@@ -10,6 +10,7 @@ import { MainComponent } from './main.component';
 import { ListarComponent } from '../Transaccion/listar/listar.component';
 import { AgregarComponent } from '../Transaccion/agregar/agregar.component';
 import { EditarComponent } from '../Transaccion/editar/editar.component';
+import { CategoriasComponent } from '../Categoria/categoria.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { EditarComponent } from '../Transaccion/editar/editar.component';
     ListarComponent,
     AgregarComponent,
     EditarComponent,
+    CategoriasComponent,
   ]
 })
 export class MainModule { }

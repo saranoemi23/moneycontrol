@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ListarComponent } from '../Transaccion/listar/listar.component';
 import { AgregarComponent } from '../Transaccion/agregar/agregar.component';
 import { MainComponent } from './main.component';
+import { CategoriasComponent } from '../Categoria/categoria.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,15 @@ const routes: Routes = [
       { path: 'listar', component: ListarComponent},
       { path: 'entradas', component: ListarComponent},
       { path: 'salidas', component: ListarComponent},
-      { path: 'agregar', component: AgregarComponent}
+      { path: 'agregar', component: AgregarComponent},
+      { path: 'editar/:id', component: AgregarComponent}
+    ]
+  },
+  {
+    path: 'categorias',
+    component: MainComponent,
+    children: [
+      { path: 'listar', component: CategoriasComponent},
     ]
   },
 ];
