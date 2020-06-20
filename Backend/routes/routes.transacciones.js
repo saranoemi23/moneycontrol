@@ -28,11 +28,19 @@ Router.get('/get', (req, res) => {
 
     console.log("Seleccionar todas las transacciones");
 
-    const queryString = `select t.id, t.tipo, t.fecha, t.monto,
-                            c.descripcion as categoria,
-                            t.descripcion from transaccion t
-                            inner join categoria c on t.id_categoria = c.id
-                            where id_usuario = ?
+    const queryString = `SELECT t.id, 
+                            t.tipo, 
+                            t.fecha, 
+                            t.monto, 
+                            c.descripcion AS categoria, 
+                            t.descripcion, 
+                            d.id      AS cuenta 
+                        FROM   transaccion t 
+                            INNER JOIN categoria c 
+                                    ON t.id_categoria = c.id 
+                            LEFT JOIN cuenta d 
+                                    ON d.id = t.idcuenta 
+                        WHERE  id_usuario = ?
                             ${filtroTipo}`;
 
     console.log('usuario', usuario);
@@ -87,8 +95,9 @@ Router.get('/get/:id', (req, res) => {
 
     const ID= req.params.id
     const queryString = `select 	id, tipo, DATE_FORMAT(fecha, "%Y-%m-%d") as fecha, 
-                                    descripcion, monto, id_usuario, id_categoria
-                        from 	    transaccion where id = ?;`
+                                    descripcion, monto, id_usuario, id_categoria, idcuenta as cuenta
+                        from 	    transaccion 
+                        where       id = ?;`
     connection.query(queryString, [ID],(err, rows, fields) => {
         if(err){
             console.log("No existe una transaccion " + err)
@@ -142,19 +151,21 @@ Router.post('/edit/:id', (req, res) =>{
     console.log("descripcion: "+ req.body.descripcion)
     console.log("monto: "+ req.body.monto)
     console.log("id_categoria: "+ req.body.id_categoria)
+    console.log("cuenta: "+ req.body.cuenta)
 
     const id = req.body.id
-    const tipo = req.body.transaccion
+    const tipo = req.body.tipo
     const fecha = req.body.fecha
     const descripcion = req.body.descripcion
     const monto = req.body.monto
     const id_categoria = req.body.id_categoria
     const id_usuario = req.session.userId;
+    const cuenta = req.body.cuenta;
 
     console.log(id)
     const queryString = `update transaccion set tipo = ?, fecha = ?, descripcion = ?, 
-                            monto = ?, id_categoria = ?, id_usuario = ? where id = ?`
-    connection.query(queryString, [tipo, fecha, descripcion, monto, id_categoria, id_usuario, id], (err, results, fields) =>{
+                            monto = ?, id_categoria = ?, id_usuario = ?, idcuenta = ? where id = ?`
+    connection.query(queryString, [tipo, fecha, descripcion, monto, id_categoria, id_usuario, cuenta, id], (err, results, fields) =>{
         if (err){
             console.log("Error al editar la transaccion: "+ err)
             res.sendStatus(400)

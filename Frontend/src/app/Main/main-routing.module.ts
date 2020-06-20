@@ -5,6 +5,8 @@ import { AgregarComponent } from '../Transaccion/agregar/agregar.component';
 import { MainComponent } from './main.component';
 import { CategoriasComponent } from '../Categoria/categoria.component';
 import { AlertasComponent } from '../Alerta/alerta.component';
+import { CuentasComponent } from '../Cuenta/cuenta.component';
+
 
 const routes: Routes = [
   {
@@ -30,6 +32,13 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       { path: 'listar', component: AlertasComponent},
+    ]
+  },
+  {
+    path: 'cuentas',
+    component: MainComponent,
+    children: [
+      { path: 'listar', component: CuentasComponent},
     ]
   },
 ];

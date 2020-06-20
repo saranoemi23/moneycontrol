@@ -3,9 +3,11 @@ import { Router } from '@angular/router';
 
 import axios from 'axios';
 import { config } from '../../config';
+import { identifierModuleUrl } from '@angular/compiler';
 
 const URL = config.backendURL() + "/usuarios";
 const URLTransacciones= config.backendURL() + "/transacciones"
+const URLAlertas = config.backendURL() + "/alertas";
 
 
 @Component({
@@ -16,6 +18,7 @@ const URLTransacciones= config.backendURL() + "/transacciones"
 export class MainComponent implements OnInit {
   entradas= 0;
   salidas= 0;
+  alertas= [];
 
   constructor(private router:Router) {
     console.log('MainComponent');
@@ -40,6 +43,12 @@ export class MainComponent implements OnInit {
   Alertas() {
     this.router.navigate(['/alertas', 'listar']);
   }
+  Cuentas() {
+    this.router.navigate(['/cuentas', 'listar']);
+  }
+  // Suscripciones() {
+  //   this.router.navigate(['/suscripcion', 'listar']);
+  // }
   CerrarSesion() {
     axios.get(URL + '/cerrarsesion')
     .then(()=> {
@@ -55,6 +64,25 @@ export class MainComponent implements OnInit {
       console.log (request.data);
       this.entradas = request.data.entradas;
       this.salidas = request.data.salidas;
+    })
+
+    axios.get(URLAlertas + '/hoy', {
+    })
+    .then(request => {
+      console.log (request.data);
+      this.alertas = request.data;
+    })
+  }
+
+  marcarleido(alerta){
+    axios.post(URLAlertas + '/marcarleido/' + alerta.id , {
+      id:alerta.id, 
+      repetir:alerta.repetir,
+    })
+    .then(request => {
+      console.log (request.data);
+      // this.alertas = request.data;
+      alerta.ocultar=true
     })
   }
 }

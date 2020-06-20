@@ -134,4 +134,42 @@ Router.delete('/delete/:id', (req, res) => {
     })
 });
 
+Router.get('/presupuesto/:idcategoria', (req, res) => {
+    const connection = req.app.get('connection');
+
+    console.log("Id categoría: "+ req.params.idcategoria)
+    console.log("Id usuario: "+ req.session.userId)
+
+    const idcategoria = req.params.idcategoria
+    const idusuario = req.session.userId;
+
+    const ID= req.params.id
+    const queryString = `select idcategoria, ifnull(total, 0) as total, presupuesto 
+                        from 	(
+                                SELECT sum(monto) as total, id_categoria
+                                FROM 	money_control.transaccion
+                                where 	id_categoria = ?
+                                and 	DATE_FORMAT(fecha, "%Y-%m") = DATE_FORMAT(curdate(), "%Y-%m")
+                                and 	id_usuario = ?
+                                group by id_categoria) as totales
+                            right join
+                                (SELECT 	idcategoria, presupuesto
+                                FROM 	money_control.categoria_personalizada
+                                where 	idcategoria = ?
+                                and 	idusuario = ?) as presupuesto
+                        on totales.id_categoria = presupuesto.idcategoria`
+                        
+    connection.query(queryString, [idcategoria, idusuario, idcategoria, idusuario],(err, rows, fields) => {
+        if(err){
+            console.log("No existe presupuesto " + err)
+            res.sendStatus(500)
+            res.end()
+            return
+        }
+        console.log("Presupuesto Seleccionado")
+        res.json(rows)
+    })
+});
+
+
 module.exports = Router;

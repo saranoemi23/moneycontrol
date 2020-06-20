@@ -18,10 +18,14 @@ const UsuariosRoutes = require('./routes/routes.usuarios');
 const TransaccionesRoutes = require('./routes/routes.transacciones');
 const CategoriasRoutes = require('./routes/routes.categorias');
 const AlertasRoutes = require('./routes/routes.alertas');
+const CuentasRoutes = require('./routes/routes.cuentas');
 
 let frontend = Path.join(__dirname,"../Frontend/dist/MoneyControlApp"); //ruta de los archivos que compile angular
 console.log(frontend);
-app.use(express.static(frontend));
+
+if (process.env.NODE_ENV == 'production'){
+    app.use(express.static(frontend));
+}
 
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
@@ -40,12 +44,16 @@ app.use('/api/usuarios', UsuariosRoutes);
 app.use('/api/transacciones', TransaccionesRoutes);
 app.use('/api/categorias', CategoriasRoutes);
 app.use('/api/alertas', AlertasRoutes);
+app.use('/api/cuentas', CuentasRoutes);
 
 
-//si la ruta actual no esta configurada, se ejecuta por default ésta 
-app.get("/*", function(req, res){
-    res.sendFile(frontend+"/index.html")
-});
+if (process.env.NODE_ENV == 'production'){
+    //si la ruta actual no esta configurada, se ejecuta por default ésta 
+    app.get("/*", function(req, res){
+        res.sendFile(frontend+"/index.html")
+    });
+}
+
 
 app.listen(3000, () =>{
     console.log('Server on port 3000');

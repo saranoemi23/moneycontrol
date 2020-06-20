@@ -22,36 +22,59 @@
                     </label>
                   </div>
             </div>
-
-            <div class="form-group">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">LPS</span>
-                    </div>
-                    <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]{10}" [(ngModel)]="monto">
-                  </div>
-            </div>
-
             <div class="form-group">
                 <label class="col-form-label" for="id_categoria">Categoría</label>
                 <div class="controls">
                     <div class="input-group">
-                    <select class="form-control" id="id_categoria" name='id_categoria' [(ngModel)]='id_categoria'>
-                        <option value="0">Seleccione la Categoría</option>
-                        <option *ngFor="let c of categorias" value= {{c.id}}>
+                    <select class="form-control" id="id_categoria" name='id_categoria' [(ngModel)]='id_categoria'
+                    [disabled]="esEntrada() ? 'disabled' : null" (change)="calcularPresupuesto()">
+                        <option value="">Seleccione la Categoría</option>
+                        <option *ngFor="let c of categoriasporTipo()" value= {{c.id}}>
                         {{c.descripcion}} 
                         </option>
                     </select>
                     </div>
                 </div>
             </div>
-
             <div class="form-group">
-                <label class="col-form-label" for="fecha">Fecha</label>
-                <div class="controls">
-                    <input type="date" class="form-control" name="fecha" id="fecha" [(ngModel)]='fecha'>
+                <label class="col-form-label" for="id_categoria">Monto</label>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">LPS</span>
+                            </div>
+                            <input type="text" class="form-control" inputmode="numeric" pattern="[0-9]{10}" [(ngModel)]="monto" (change)="validar()">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <span *ngIf="presupuestoValido()">Presupuesto: {{presupuesto}}</span>
+                    </div>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="col-form-label" for="fecha">Fecha</label>
+                        <div class="controls">
+                            <input type="date" class="form-control" name="fecha" id="fecha" [(ngModel)]='fecha'>
+                        </div>
+                    </div>
+                <div class="col-md-6">
+                    <label class="col-form-label" for="id_categoria">Cuenta</label>
+                    <div class="controls">
+                        <div class="input-group">
+                            <select class="form-control" id="idcuenta" name='idcuenta' [(ngModel)]='cuenta'>
+                                <option value="0">Seleccione la Cuenta</option>
+                                <option *ngFor="let c of cuentas" value= {{c.id}}>
+                                {{c.nombre}} 
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
             <div class="form-group">
                 <label class="col-form-label" for="descripcion">Descripción</label>

@@ -12,6 +12,7 @@ import { AgregarComponent } from '../Transaccion/agregar/agregar.component';
 import { EditarComponent } from '../Transaccion/editar/editar.component';
 import { CategoriasComponent } from '../Categoria/categoria.component';
 import { AlertasComponent } from '../Alerta/alerta.component';
+import { CuentasComponent } from '../Cuenta/cuenta.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { AlertasComponent } from '../Alerta/alerta.component';
     EditarComponent,
     CategoriasComponent,
     AlertasComponent,
+    CuentasComponent,
   ]
 })
 export class MainModule { }

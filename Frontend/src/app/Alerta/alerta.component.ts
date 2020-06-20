@@ -16,6 +16,7 @@ const URL= config.backendURL() + "/alertas"
 export class AlertasComponent implements OnInit {
 
   titulo = 'Alertas';
+  
   id=0;
   descripcion= '';
   fecha= '';

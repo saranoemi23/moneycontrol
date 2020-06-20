@@ -1,0 +1,94 @@
+
+<div class="container">
+    <br>
+    <div class="card">
+        <div class="card-header">
+            Cuentas
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="col-form-label" for="cuentas">Nombre</label>
+                  <div class="controls">
+                    <div class="input-group">
+                      <input type="text" class="form-control" [(ngModel)]="nombre">     
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="col-form-label" for="cuentas">Tipo de Cuenta</label>
+                    <div class="controls">
+                      <div class="input-group">
+                        <select class="form-control" [(ngModel)]="tipocuenta">
+                          <option value="Crédito">Credito</option>
+                          <option value="Débito">Debito</option>
+                          <option value="Efectivo">Efectivo</option>
+                        </select>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="col-form-label" for="cuentas">Saldo inicial</label>
+                    <div class="controls">
+                      <div class="input-group">
+                        <input type="text" class="form-control" [(ngModel)]="saldoinicial">     
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button class="btn btn-primary" (click)="guardarDatos()" >
+                Guardar
+              </button>
+              <button class="btn btn-secondary" (click)="nuevo()" >
+                Nuevo
+              </button>
+            </div>
+          </div>
+          </div>
+        </div>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            Lista de cuentas
+        </div>
+        <div class="card-body">
+            <div class="row"> 
+                <div class="col-md-3">Nombre</div>
+                <div class="col-md-2">Tipo de cuenta</div>
+                <div class="col-md-3">Saldo inicial</div>
+                <div class="col-md-2">Cuenta principal</div>
+            </div>
+            <br>
+            <div class="row" *ngFor="let cuenta of cuentas">
+                <p class="col-md-3">{{cuenta.nombre}}</p>
+                <p class="col-md-2">{{cuenta.tipocuenta}}</p>
+                <p class="col-md-3">{{cuenta.saldoinicial}}</p>
+                <div class="col-md-2">
+                  <div class="form-check">
+                    <span *ngIf="cuenta.principal == 1">Cuenta Principal</span>
+                    <span *ngIf="cuenta.principal != 1">
+                      <button class="btn btn-primary btn-sm" (click)="marcarPrincipal(cuenta)">Marcar principal</button>
+                    </span>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn-warning" (click)="editarDatos(cuenta)">
+                        <span class="icon-edit"></span>
+                    </button>
+                    <button class="btn-danger" (click)="eliminar(cuenta)">
+                        <span class="icon-cancel-circled2" ></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+</div>
