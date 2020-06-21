@@ -11,6 +11,17 @@
 .menu-principal {
     background-color:#6dadfc;
     color: white;
+    background-image: url("/assets/fondo.jpg");
+    background-size: cover;
+    background-position: bottom left;
+    height: 100%;
+}
+
+.menu-principal .contenido{
+    backdrop-filter: grayscale(100%);
+    height: 100%;
+    width: 100%;
+    background-color: rgba(76,121,176,70%);
 }
 
 .menu-principal button {
@@ -18,9 +29,44 @@
     border-color: white;
 }
 
-progress[value]::-webkit-progress-value::before {
+main {
+    overflow-x: hidden;
+}
+
+/* progress[value]::-webkit-progress-value::before {
     content: '80%';
     position: absolute;
     right: 0;
     top: -125%;
-  }
+  } */
+
+progress::-moz-progress-bar { background: green; }
+progress::-webkit-progress-value { color: green; }
+progress { color: green; }
+
+
+.header .izquierda {
+text-align:left;
+font-size: 2em;
+}
+
+.header .derecha {
+text-align:right
+}
+
+.header .centro {
+font-size: 2em;
+}
+
+.header {
+margin:auto;
+padding: 0.5em;
+}
+
+.menu-principal button{
+    margin-bottom: 10px;
+    text-align: left;
+    border: 0;
+
+}
+

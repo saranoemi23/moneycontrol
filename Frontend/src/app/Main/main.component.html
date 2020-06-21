@@ -1,16 +1,17 @@
 <div class="header-principal" style="text-align: center;">
-  <br>
-  <h2>
+ <header class="container header row">
+   <div class="izquierda col-md-4"> 
+    <span class="icon-money"></span>
     Money Control HN
-  </h2>
-  <h1>
-    <progress id="file" [value]="salidas" [max]="entradas"></progress>
-  </h1>
-  <h6 class="text-center">
-    Entradas {{entradas |  currency: 'L. ' }} | Salidas {{salidas |  currency: 'L. ' }} 
-    <br>
-    Saldo {{entradas-salidas |  currency: 'L. ' }} 
-  </h6>
+   </div>
+  <div class="centro col-md-4">
+    <meter id="file" [value]="salidas" [max]="entradas"></meter>
+  </div>
+  <div class="derecha col-md-4">
+    Entradas {{entradas |  currency: 'L' }} | Salidas {{salidas |  currency: 'L' }} 
+    Saldo disponible {{entradas-salidas |  currency: 'L' }} 
+  </div>
+ </header>
   <div class="container" >
     <div *ngFor='let alerta of alertas'>
       <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf='!alerta.ocultar'>
@@ -21,39 +22,59 @@
       </div>
     </div>
   </div>
-  <h1>
-    <span class="icon-money"></span>
-  </h1>
 </div>
-<div class="menu-principal">
-  <div class="container">
-    <br>
-    <button (click)="Transaccion()" class="btn btn-outline-primary" >
-      <span class="icon-list">Transacciones</span>
-    </button>
-    <button (click)="Entrada()" class="btn btn-outline-primary" style="margin-left: 10px;">
-      <span class="icon-down">Entradas</span>
-    </button>
-    <button (click)="Salida()" class="btn btn-outline-primary" style="margin-left: 10px;">
-      <span class="icon-up">Salidas</span>
-    </button>
-    <button (click)="Categorias()" class="btn btn-outline-primary" style="margin-left: 10px;">
-      <span class="icon-layers">Presupuestos</span>
-    </button>
-    <button (click)="Alertas()" class="btn btn-outline-primary" style="margin-left: 10px;">
-      <span class="icon-bell">Alertas</span>
-    </button>
-    <button (click)="Cuentas()" class="btn btn-outline-primary" style="margin-left: 10px;">
-      <span class="icon-credit-card">Cuentas</span>
-    </button>
-    <div class="float-right">
-      <button (click)="CerrarSesion()" class="btn btn-outline-primary">
-        <span class="icon-user">Cerrar Sesión</span>
-      </button>
+<div class="row full-height">
+  <div class="col-lg-2" style="padding:0">
+    <div class="menu-principal">
+      <div class="contenido">
+        <br>
+        <span class="d-lg-block">
+          <button (click)="Transaccion()" class="btn btn-outline-primary" >
+            <span class="icon-list">Transacciones</span>
+          </button>
+        </span>
+        <span class="d-lg-block">
+          <button (click)="Entrada()" class="btn btn-outline-primary">
+            <span class="icon-down">Entradas</span>
+          </button>
+        </span>
+        <span class="d-lg-block">
+          <button (click)="Salida()" class="btn btn-outline-primary">
+            <span class="icon-up">Salidas</span>
+          </button>
+        </span>
+        <span class="d-lg-block">
+          <button (click)="Categorias()" class="btn btn-outline-primary">
+            <span class="icon-layers">Presupuestos</span>
+          </button>
+        </span>
+        <span class="d-lg-block">
+          <button (click)="Alertas()" class="btn btn-outline-primary">
+            <span class="icon-bell">Alertas</span>
+          </button>
+        </span>
+        <span class="d-lg-block">
+          <button (click)="Cuentas()" class="btn btn-outline-primary">
+            <span class="icon-credit-card">Cuentas</span>
+          </button>
+        </span>
+        <span class="d-lg-block">
+          <button (click)="CerrarSesion()" class="btn btn-outline-primary">
+            <span class="icon-user">Cerrar Sesión</span>
+          </button>
+        </span>
+        <br>
+        <br>
+      </div>
     </div>
-    <br>
-    <br>
+
+  </div>
+  <div class="col-lg-10">
+    <router-outlet></router-outlet>
   </div>
 </div>
 
-<router-outlet></router-outlet>
+<footer>
+  <span><a>Money Control HN</a> &copy; {{anio}}.</span>
+</footer>
+

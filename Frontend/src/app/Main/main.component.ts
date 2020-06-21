@@ -19,6 +19,7 @@ export class MainComponent implements OnInit {
   entradas= 0;
   salidas= 0;
   alertas= [];
+  anio: number = new Date().getFullYear();
 
   constructor(private router:Router) {
     console.log('MainComponent');

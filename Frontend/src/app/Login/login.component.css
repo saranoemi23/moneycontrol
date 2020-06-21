@@ -77,3 +77,36 @@ a.socialIcon:hover,
     border: 3px solid green;
     padding: 10px;
   }
+
+.login-container{
+    position: relative;
+    padding-top: 150px;
+}
+
+.login-container .wallpaper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right:0;
+    bottom: 0;
+    background-image: url("/assets/fondo.jpg");
+    background-size: cover;
+    filter: blur(3px);
+}   
+
+.login-container .container{
+    max-width: 600px;
+}
+
+.login-container .logo{
+    width: 100%;
+    margin-top: 60px;
+}
+
+.login-container .card{
+    background-color: rgba(255, 255, 255, 75%);
+}
+
+.login-container .boton-login{
+    margin-right: 25px;
+}
