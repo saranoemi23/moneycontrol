@@ -5,20 +5,18 @@ import { config } from '../../config';
 const URL = config.backendURL() + "/usuarios";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-usuario',
+  templateUrl: './usuario.component.html',
+  styleUrls: ['../Login/login.component.css']
 })
-export class LoginComponent {
+export class UsuarioComponent {
   user = '';
   pass = '';
   url = URL + '/login';
   redirect = config.frontendURL();
-
-  mostrarInfo = false;
+  infoPago = false;
 
   constructor(private router:Router) {
-    console.log('LoginComponent');
+    console.log('UsuarioComponent');
   }
-  
 }

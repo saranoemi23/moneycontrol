@@ -81,18 +81,15 @@ a.socialIcon:hover,
 .login-container{
     position: relative;
     padding-top: 150px;
-}
-
-.login-container .wallpaper{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right:0;
-    bottom: 0;
     background-image: url("/assets/fondo.jpg");
     background-size: cover;
-    filter: blur(3px);
+    background-attachment: fixed;
+    /* filter: blur(3px); */
 }   
+
+.login-container .wallpaper{
+    backdrop-filter: blur(3px);
+}
 
 .login-container .container{
     max-width: 600px;
@@ -109,4 +106,9 @@ a.socialIcon:hover,
 
 .login-container .boton-login{
     margin-right: 25px;
+}
+
+.login-container .botoninfo {
+    color: #007bff;
+    cursor: pointer;
 }

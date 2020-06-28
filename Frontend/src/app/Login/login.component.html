@@ -1,11 +1,11 @@
 <div class="login-container" style="height: 100%;">
+
     <div class="wallpaper">
-        <div class="text-center">
-            <h1>Money Control HN</h1>
-        </div>
     </div>
     <div class="container">
-
+        <!-- <div class="text-center">
+            <h1>Money Control HN</h1>
+        </div>   -->
         <br>
         <div class="card">
             <div class="card-body">
@@ -19,7 +19,7 @@
                             <p class="text-muted">Ingrese su usuario y contraseña</p>
                             <div class="form-group">
                                 <!-- <label for="username" type="text">Ingrese su usuario</label> -->
-                                <input placeholder="Nombre usuario" type="text" class="form-control" id="username" name="user" autocomplete="off" required>
+                                <input placeholder="Nombre usuario" type="email" class="form-control" id="username" name="user" autocomplete="off" required>
                             </div>
                             <div class="form-group">
                                 <!-- <label for="password" type="password">Ingrese su contraseña</label> -->
@@ -43,9 +43,19 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6 forgot text-muted">Información</div>
-                    <div class="col-md-6 forgot text-muted text-right">Crear Registro</div>
+                    <div class="col-md-6 forgot botoninfo" (click)="mostrarInfo=!mostrarInfo">Información</div>
+                    <div class="col-md-6 forgot text-muted text-right">
+                        <a href="/usuario/crear">Crear Registro</a>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container" *ngIf="mostrarInfo">
+        <div class="card">
+            <div class="card-body">
+                Texto
             </div>
         </div>
     </div>

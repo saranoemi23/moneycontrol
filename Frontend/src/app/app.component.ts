@@ -18,17 +18,18 @@ export class AppComponent {
     if (router.url == '/') {
       this.redireccionar(router);
     }
-
   }
 
   redireccionar(router) {
     this.comprobarSession()
       .then(userId => {
 
-        let ventanaLogin = router.url.indexOf('/login') > -1;
+        let rutaPublica = this.esrutaPublica(router);
 
         // si no hay usuario logueado, pero no está en el login
-        if (!userId && !ventanaLogin) {
+        if (!userId && !rutaPublica) {
+          console.log(this.router.url);
+          console.log("redireccionando");
           return router.navigate(['login', 'entrar']);
         }
         // si hay un usuario logueado
@@ -45,5 +46,15 @@ export class AppComponent {
       withCredentials: true,
     })
     .then(request => request.data.userId)
+  }
+
+  esrutaPublica(router){
+    if (router.url.indexOf('/login') > -1){
+      return true
+    }
+    if (router.url.indexOf('/usuario') > -1){
+      return true
+    }
+    return false
   }
 }

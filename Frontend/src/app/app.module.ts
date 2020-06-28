@@ -5,7 +5,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { MainModule } from './Main/main.module';
 import { LoginModule } from './Login/login.module';
-
+import { UsuarioModule } from './Usuario/usuario.module';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
@@ -22,6 +22,7 @@ const routes: Routes = [
     AppRoutingModule,
     MainModule,
     LoginModule,
+    UsuarioModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
