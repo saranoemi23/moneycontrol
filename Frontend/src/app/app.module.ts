@@ -7,6 +7,7 @@ import { MainModule } from './Main/main.module';
 import { LoginModule } from './Login/login.module';
 import { UsuarioModule } from './Usuario/usuario.module';
 import { AppComponent } from './app.component';
+import { LbdModule } from './lbd/lbd.module';
 
 const routes: Routes = [
 ];

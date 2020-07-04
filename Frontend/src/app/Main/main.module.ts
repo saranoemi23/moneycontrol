@@ -13,6 +13,7 @@ import { EditarComponent } from '../Transaccion/editar/editar.component';
 import { CategoriasComponent } from '../Categoria/categoria.component';
 import { AlertasComponent } from '../Alerta/alerta.component';
 import { CuentasComponent } from '../Cuenta/cuenta.component';
+import { LbdModule } from '../lbd/lbd.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { CuentasComponent } from '../Cuenta/cuenta.component';
     CommonModule,
     MainRoutingModule,
     FormsModule,
+    LbdModule,
   ],
   declarations: [
     MainComponent,

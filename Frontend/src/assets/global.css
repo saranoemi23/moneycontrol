@@ -16,3 +16,67 @@ footer{
     padding: 5px;
     text-align: center;
 }
+
+.ct-series-a .ct-slice-pie {
+    fill: aquamarine !important;
+}
+.ct-series-b .ct-slice-pie {
+    fill: aqua !important;
+}
+.ct-series-c .ct-slice-pie {
+    fill: peachpuff !important;
+}
+.ct-series-d .ct-slice-pie {
+    fill: rgb(32, 201, 16) !important;
+}
+.ct-series-e .ct-slice-pie {
+    fill: rgb(202, 192, 221) !important;
+}
+.ct-series-f .ct-slice-pie {
+    fill: rgb(248, 116, 220) !important;
+}
+.ct-series-g .ct-slice-pie {
+    fill: rgb(224, 212, 39) !important;
+}
+.ct-series-h .ct-slice-pie {
+    fill: rgb(236, 127, 113) !important;
+}
+.ct-series-i .ct-slice-pie {
+    fill: rgb(169, 171, 212) !important;
+}
+.ct-series-j .ct-slice-pie {
+    fill: rgb(194, 179, 223) !important;
+}
+.ct-series-k .ct-slice-pie {
+    fill: rgb(33, 151, 187) !important;
+}
+.ct-series-l .ct-slice-pie {
+    fill: rgb(185, 209, 50) !important;
+}
+.ct-series-m .ct-slice-pie {
+    fill: rgb(142, 235, 190) !important;
+}
+.ct-series-n .ct-slice-pie {
+    fill: rgb(191, 204, 155) !important;
+}
+.ct-series-o .ct-slice-pie {
+    fill: rgb(128, 192, 168) !important;
+}
+.ct-series-p .ct-slice-pie {
+    fill: rgb(231, 124, 231) !important;
+}
+.ct-series-q .ct-slice-pie {
+    fill: rgb(236, 201, 168) !important;
+}
+.ct-series-r .ct-slice-pie {
+    fill: rgb(216, 167, 216) !important;
+}
+
+.ct-label{
+    fill: black !important;
+    color: black !important;
+    font-size: 0.75rem !important;
+    line-height: 1 !important;
+    font-weight: bold;
+
+}

@@ -5,6 +5,20 @@
             <h3>{{titulo}}</h3>
         </div>
         <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4" *ngIf="chartListo">
+                    <lbd-chart
+                    [title]="'Gastos por categoría'"
+                    [chartClass]="'ct-perfect-fourth'"
+                    [chartType]="emailChartType"
+                    [chartData]="emailChartData"
+                    [legendItems]="emailChartLegendItems">
+                  </lbd-chart>
+                </div>
+            </div>
+            <br>
             <div class="row"> 
                 <div class="col-md-4">Fecha</div>
                 <div class="col-md-2">Monto</div>

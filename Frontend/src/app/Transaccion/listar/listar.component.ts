@@ -1,5 +1,6 @@
 import { Component, OnInit, ɵConsole } from '@angular/core';
 import { Router } from '@angular/router';
+import { LegendItem, ChartType } from '../../lbd/lbd-chart/lbd-chart.component';
 
 import axios from "axios";
 
@@ -11,9 +12,15 @@ const URL= config.backendURL() + "/transacciones"
   selector: 'app-listar',
   templateUrl: './listar.component.html',
   styleUrls: ['./listar.component.css']
+
 })
 export class ListarComponent implements OnInit {
+  
+  public emailChartType: ChartType;
+  public emailChartData: any;
+  public emailChartLegendItems: LegendItem[];
 
+  chartListo = false
   transacciones = []
   titulo = 'Transacciones';
   total: number;
@@ -22,6 +29,11 @@ export class ListarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.emailChartType = ChartType.Pie;
+    this.emailChartData = {
+      labels: [],
+      series: [],
+    };
 
     let tipo = getTipo(this.router.url);
     if (tipo == 'E') {
@@ -34,6 +46,48 @@ export class ListarComponent implements OnInit {
 
     this.cargarDatos();
 
+  }
+
+  generarChart(transacciones){
+    let sumas = {};
+    let total = 0;
+
+    transacciones.forEach(element => {
+      console.log(element)
+      
+      let valor = element.monto;
+      let index = element.categoria;
+      if(index=="Ingreso"){
+        return
+      }
+      if (sumas[index]){
+        sumas [index] += valor
+      } 
+      else {
+        sumas [index] = valor
+      }
+      total+=valor;
+    });
+
+    console.log(sumas);
+    let labels = Object.keys(sumas);
+    let values = Object.values(sumas);
+
+    labels=labels.map(function(label, n){
+      let valor = values [n]
+      console.log(valor, total);
+      let porcentaje = Math.floor(valor/total*10000)/100;
+      return label +" " + porcentaje + "%"
+    });
+
+    this.emailChartType = ChartType.Pie;
+    this.emailChartData = {
+      labels: labels,
+      series: values,
+    };
+    console.log(labels);
+    console.log(values);
+    this.chartListo=true;
   }
 
   cargarDatos() {
@@ -60,6 +114,7 @@ export class ListarComponent implements OnInit {
             con = con - transaccion.monto ;
           }
         })
+        this.generarChart(this.transacciones);
       }
       this.total = con;
     })
@@ -94,3 +149,5 @@ function getTipo(url) {
     return '';
   }
 }
+
+
