@@ -20,6 +20,7 @@ export class MainComponent implements OnInit {
   salidas= 0;
   alertas= [];
   anio: number = new Date().getFullYear();
+  montosugerido=0;
 
   constructor(private router:Router) {
     console.log('MainComponent');
@@ -65,6 +66,7 @@ export class MainComponent implements OnInit {
       console.log (request.data);
       this.entradas = request.data.entradas;
       this.salidas = request.data.salidas;
+      this.montosugerido = request.data.montosugerido;
     })
 
     axios.get(URLAlertas + '/hoy', {

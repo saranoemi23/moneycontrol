@@ -14,16 +14,16 @@
                     <div class="col-md-6">
                         <p class="text-muted">Crear usuario</p>
                         <div class="form-group">
-                            <input placeholder="Correo" type="email" class="form-control" name="user" autocomplete="off" required>
+                            <input placeholder="Correo" type="email" class="form-control" name="user" autocomplete="off" required [(ngModel)]="username">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="nombre" required placeholder="Nombre completo" required>
+                            <input type="text" class="form-control" name="nombre" required placeholder="Nombre completo" required [(ngModel)]="nombre">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" name="pass" required placeholder="Contraseña" required>
+                            <input type="password" class="form-control" name="pass" required placeholder="Contraseña" required [(ngModel)]="password">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" name="pass" required placeholder="Confirmar contraseña" required>
+                            <input type="password" class="form-control" name="confirmarpass" required placeholder="Confirmar contraseña" required>
                         </div>
                     </div>
                 </div>
@@ -41,34 +41,72 @@
                             </label>
                         </p>
                         <div class="form-group">
-                            <input placeholder="No. Tarjeta" type="text" class="form-control" name="user" autocomplete="off" [required]="infoPago" [disabled]="!infoPago">
+                            <input placeholder="Número de Tarjeta" type="text" class="form-control" name="user" autocomplete="off" [required]="infoPago" [disabled]="!infoPago">
                         </div>
                         <div class="form-group">
-                            <input placeholder="Fecha de vencimiento" type="text" class="form-control" name="user" autocomplete="off" [required]="infoPago" [disabled]="!infoPago">
+                            <input placeholder="Nombre del Titular" type="text" class="form-control" name="user" autocomplete="off" [required]="infoPago" [disabled]="!infoPago">
                         </div>
                         <div class="form-group">
-                            <input placeholder="CSC" type="text" class="form-control" name="user" autocomplete="off" [required]="infoPago" [disabled]="!infoPago">
+                            <input placeholder="CCV" type="password" class="form-control" name="user" autocomplete="off" [required]="infoPago" [disabled]="!infoPago">
+                        </div>
+                        <div class="form-group">
+                            <!-- <input placeholder="Fecha de vencimiento (Año)" type="text" class="form-control" name="user" autocomplete="off" [required]="infoPago" [disabled]="!infoPago"> -->
+                            <select class="form-control" class="input-group" placeholder="Ciudad" class="form-control" [required]="infoPago" [disabled]="!infoPago">
+                                <option value="Crédito">Fecha de Expiración (Mes)</option>
+                                <option value="Crédito">01</option>
+                                <option value="Crédito">02</option>
+                                <option value="Crédito">03</option>
+                                <option value="Crédito">04</option>
+                                <option value="Crédito">05</option>
+                                <option value="Crédito">06</option>
+                                <option value="Crédito">07</option>
+                                <option value="Crédito">08</option>
+                                <option value="Crédito">09</option>
+                                <option value="Crédito">10</option>
+                                <option value="Crédito">11</option>
+                                <option value="Crédito">12</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <!-- <input placeholder="Fecha de vencimiento (Año)" type="text" class="form-control" name="user" autocomplete="off" [required]="infoPago" [disabled]="!infoPago"> -->
+                            <select class="form-control" class="input-group" placeholder="Ciudad" class="form-control" [required]="infoPago" [disabled]="!infoPago">
+                                <option value="Crédito">Fecha de Expiración (Año)</option>
+                                <option value="Crédito">2020</option>
+                                <option value="Crédito">2021</option>
+                                <option value="Crédito">2022</option>
+                                <option value="Crédito">2023</option>
+                                <option value="Crédito">2024</option>
+                                <option value="Crédito">2025</option>
+                                <option value="Crédito">2026</option>
+                                <option value="Crédito">2027</option>
+                                <option value="Crédito">2028</option>
+                                <option value="Crédito">2029</option>
+                                <option value="Crédito">2030</option>
+                                <option value="Crédito">2031</option>
+                                <option value="Crédito">2032</option>
+                                <option value="Crédito">2033</option>
+                                <option value="Crédito">2034</option>
+                                <option value="Crédito">2035</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <p class="text-muted">
                             <label>Dirección de pago</label>
                         </p>
+                        
                         <div class="form-group">
-                            <input placeholder="Nombre" type="text" class="form-control" name="user" autocomplete="off" [required]="infoPago" [disabled]="!infoPago">
-                        </div>
-                        <div class="form-group">
-                            <input placeholder="Apellidos" type="text" class="form-control" name="user" autocomplete="off" [required]="infoPago" [disabled]="!infoPago">
-                        </div>
-                        <div class="form-group">
-                            <input placeholder="Ciudad" type="text" class="form-control" name="user" autocomplete="off" [required]="infoPago" [disabled]="!infoPago">
+                            <!-- <input placeholder="Ciudad" type="text" class="form-control" name="user" autocomplete="off" [required]="infoPago" [disabled]="!infoPago"> -->
+                            <select class="form-control" class="input-group" placeholder="Ciudad" class="form-control" [required]="infoPago" [disabled]="!infoPago">
+                                <option value="Crédito">San Pedro Sula</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <input placeholder="Dirección" type="text" class="form-control" name="user" autocomplete="off" [required]="infoPago" [disabled]="!infoPago">
                         </div>
                         <p class="text-muted">
                             <label>
-                                <input type="checkbox">
+                                <input type="checkbox" [disabled]="!infoPago">
                                 Términos y condiciones
                             </label>
                         </p>
@@ -84,7 +122,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary boton-login form-control" value="Crear" name="submit">
+                            <input type="submit" class="btn btn-primary boton-login form-control" value="Crear" name="submit" (click)="guardarRegistro()">
                         </div>
                     </div>
                 </div>

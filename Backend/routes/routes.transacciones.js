@@ -64,18 +64,28 @@ Router.get('/total', (req, res) => {
 
     console.log("Seleccionar todas las transacciones");
 
-    const queryString = `select 	
-                                sum(case when t.tipo = 'E' then t.monto else 0 end) as entradas,
-                                sum(case when t.tipo = 'S' then t.monto else 0 end) as salidas
-                        from 	transaccion t
-                         inner join categoria c on t.id_categoria = c.id
-                        where 	id_usuario = ?;
+    const queryString = `select entradas, salidas, montosugerido from
+                            (
+                                select 	
+                                    sum(case when t.tipo = 'E' then t.monto else 0 end) as entradas,
+                                    sum(case when t.tipo = 'S' then t.monto else 0 end) as salidas
+                                from 	transaccion t
+                                inner join categoria c on t.id_categoria = c.id
+                                where 	id_usuario = ?
+                                and 	DATE_FORMAT(fecha, "%Y-%m") = DATE_FORMAT(curdate(), "%Y-%m")
+                            ) totales
+                        join 
+                            (
+                            select sum(montosugerido) as montosugerido from alerta
+                            where DATE_FORMAT(fecha, "%Y-%m") = DATE_FORMAT(curdate(), "%Y-%m")
+                            and idusuario = ?
+                            ) presupuesto
                             `;
 
     console.log('usuario', usuario);
 
 
-    connection.query(queryString, [usuario], (err, rows, fields) => {
+    connection.query(queryString, [usuario, usuario], (err, rows, fields) => {
         if(err){
             console.log("No hay transacciones " + err)
             res.sendStatus(500)

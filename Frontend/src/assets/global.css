@@ -18,10 +18,10 @@ footer{
 }
 
 .ct-series-a .ct-slice-pie {
-    fill: aquamarine !important;
+    fill: rgb(130, 175, 235) !important;
 }
 .ct-series-b .ct-slice-pie {
-    fill: aqua !important;
+    fill: rgb(109, 240, 240) !important;
 }
 .ct-series-c .ct-slice-pie {
     fill: peachpuff !important;

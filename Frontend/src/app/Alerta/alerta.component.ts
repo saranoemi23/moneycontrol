@@ -23,6 +23,7 @@ export class AlertasComponent implements OnInit {
   repetir= '';
   fechaoriginal = '';
   idusuario=0;
+  montosugerido=0;
   
   alertas=[];
 
@@ -47,6 +48,8 @@ export class AlertasComponent implements OnInit {
     this.repetir=alerta.repetir;
     this.fechaoriginal=alerta.fechaoriginal;
     this.idusuario=alerta.idusuario;
+    this.montosugerido=alerta.montosugerido;
+
   }
 
   guardarDatos(){
@@ -57,6 +60,7 @@ export class AlertasComponent implements OnInit {
     let repetir = this.repetir;
     let fechaoriginal = this.fechaoriginal;
     let idusuario = this.idusuario;
+    let montosugerido = this.montosugerido;
     
     if (descripcion==''){
       alert("Ingrese una descripción.")
@@ -74,6 +78,7 @@ export class AlertasComponent implements OnInit {
               repetir:repetir,
               fechaoriginal:fechaoriginal,
               idusuario:idusuario,
+              montosugerido:montosugerido,
     }
 
     if (id) {
@@ -94,6 +99,7 @@ export class AlertasComponent implements OnInit {
     this.repetir='';
     this.fechaoriginal='';
     this.idusuario=0;
+    this.montosugerido=0;
   }
 
   eliminar(alerta){

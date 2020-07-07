@@ -49,7 +49,7 @@ export class ListarComponent implements OnInit {
   }
 
   generarChart(transacciones){
-    let sumas = {};
+    let sumas: { [key:string]:number; } = {};
     let total = 0;
 
     transacciones.forEach(element => {
@@ -74,7 +74,7 @@ export class ListarComponent implements OnInit {
     let values = Object.values(sumas);
 
     labels=labels.map(function(label, n){
-      let valor = values [n]
+      let valor: number = values[n]; //
       console.log(valor, total);
       let porcentaje = Math.floor(valor/total*10000)/100;
       return label +" " + porcentaje + "%"

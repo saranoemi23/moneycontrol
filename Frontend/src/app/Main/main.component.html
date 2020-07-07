@@ -10,6 +10,10 @@
   <div class="derecha col-md-4">
     Entradas {{entradas |  currency: 'L' }} | Salidas {{salidas |  currency: 'L' }} 
     Saldo disponible {{entradas-salidas |  currency: 'L' }} 
+    <span *ngIf="montosugerido" class="diferido">
+      <br>
+      Saldo diferido de alertas {{montosugerido|  currency: 'L' }} 
+    </span>
   </div>
  </header>
   <div class="container" >

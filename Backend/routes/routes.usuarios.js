@@ -49,10 +49,36 @@ Router.get('/session', (req, res) => {
 
 });
 
-
 Router.get('/cerrarsesion', (req, res) => {
   req.session.userId = '';
   return res.json({});
 });
+
+Router.post('/add', (req, res) =>{
+  const connection = req.app.get('connection');
+
+  console.log("Tratando de agregar usuario..")
+  console.log("username: "+ req.body.username)
+  console.log("password: "+ req.body.password)
+  console.log("nombre: "+ req.body.nombre)
+
+  const username = req.body.username
+  const password = req.body.password
+  const nombre = req.body.nombre
+
+  const queryString = `INSERT INTO money_control.usuario
+                                (username, password, nombre)
+                      VALUES    (?,?,?);`
+  connection.query(queryString, [username, password, nombre], (err, results, fields) =>{
+      if (err){
+          console.log("Error al agregar la transaccion: "+ err)
+          res.sendStatus(500)
+          return
+      }
+      console.log("Se agrego transaccion con id: ", results.insertId);
+      res.end()
+  } )
+});
+
 
 module.exports = Router;

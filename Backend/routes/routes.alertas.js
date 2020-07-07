@@ -17,7 +17,7 @@ Router.get('/get', (req, res) => {
 
     console.log("Seleccionar todas las alertas")
 
-    const queryString = `SELECT id, descripcion, fecha, repetir, fechaoriginal, idusuario 
+    const queryString = `SELECT id, descripcion, fecha, repetir, fechaoriginal, idusuario, montosugerido 
                         FROM    money_control.alerta 
                         where   idusuario =?`;
 
@@ -39,7 +39,7 @@ Router.get('/hoy', (req, res) => {
 
     console.log("Seleccionar todas las alertas")
 
-    const queryString = `SELECT id, descripcion, fecha, repetir, fechaoriginal, idusuario 
+    const queryString = `SELECT id, descripcion, fecha, repetir, fechaoriginal, idusuario, montosugerido
                         FROM    money_control.alerta 
                         where   idusuario =?
                         and 	fecha = curdate()
@@ -67,11 +67,13 @@ Router.post('/add', (req, res) =>{
     console.log("repetir: "+ req.body.repetir)
     console.log("fechaoriginal: "+ req.body.fechaoriginal)
     console.log("idusuario: "+ req.body.idusuario)
+    console.log("montosugerido: "+ req.body.montosugerido)
 
     const descripcion = req.body.descripcion
     const fecha = req.body.fecha;
     const repetir = req.body.repetir
     const fechaoriginal = req.body.fechaoriginal
+    const montosugerido = req.body.montosugerido
 
     const queryString = `INSERT INTO money_control.alerta
                         (
@@ -79,10 +81,10 @@ Router.post('/add', (req, res) =>{
                         fecha,
                         repetir,
                         fechaoriginal,
-                        idusuario)
+                        idusuario, montosugerido)
                         VALUES
-                        (?,?,?,?,?)`
-    connection.query(queryString, [descripcion, fecha, repetir, fechaoriginal, usuario], (err, results, fields) =>{
+                        (?,?,?,?,?,?)`
+    connection.query(queryString, [descripcion, fecha, repetir, fechaoriginal, usuario, montosugerido], (err, results, fields) =>{
         if (err){
             console.log("Error al agregar la alertas: "+ err)
             res.sendStatus(500)
@@ -105,6 +107,7 @@ Router.post('/edit/:id', (req, res) =>{
     console.log("repetir: "+ req.body.repetir)
     console.log("fechaoriginal: "+ req.body.fechaoriginal)
     console.log("idusuario: "+ req.body.idusuario)
+    console.log("montosugerido: "+ req.body.montosugerido)
 
     const id = req.body.id;
     const descripcion = req.body.descripcion
@@ -112,13 +115,14 @@ Router.post('/edit/:id', (req, res) =>{
     const repetir = req.body.repetir
     const fechaoriginal = req.body.fechaoriginal
     const idusuario = req.body.idusuario
+    const montosugerido = req.body.montosugerido
 
     console.log(id)
     const queryString = `UPDATE money_control.alerta
-                        SET descripcion = ?, fecha = ?, repetir = ?, fechaoriginal = ?, idusuario = ?, leido = 0
+                        SET descripcion = ?, fecha = ?, repetir = ?, fechaoriginal = ?, idusuario = ?, leido = 0, montosugerido = ?
                         WHERE id =?
                         `
-    connection.query(queryString, [descripcion, fecha, repetir, fechaoriginal, idusuario, id ], (err, results, fields) =>{
+    connection.query(queryString, [descripcion, fecha, repetir, fechaoriginal, idusuario, montosugerido, id ], (err, results, fields) =>{
         if (err){
             console.log("Error al editar la alerta: "+ err)
             res.sendStatus(400)
@@ -135,10 +139,13 @@ Router.post('/marcarleido/:id', (req, res) =>{
     console.log("Tratando de agregar alertas por usuario..")
     console.log("id: "+ req.body.id)
     console.log("repetir: "+ req.body.repetir)
+    console.log("montosugerido: "+ req.body.montosugerido)
+
 
     const id = req.body.id;
     const repetir = req.body.repetir;
     const fecha = req.body.fecha;
+    const montosugerido = req.body.montosugerido;
     
     let actualizar= '' ;
 
