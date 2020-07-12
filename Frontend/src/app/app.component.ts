@@ -24,7 +24,7 @@ export class AppComponent {
     this.comprobarSession()
       .then(userId => {
 
-        let rutaPublica = this.esrutaPublica(router);
+        let rutaPublica = this.esrutaPublica(location.href);
 
         // si no hay usuario logueado, pero no está en el login
         if (!userId && !rutaPublica) {
@@ -48,11 +48,12 @@ export class AppComponent {
     .then(request => request.data.userId)
   }
 
-  esrutaPublica(router){
-    if (router.url.indexOf('/login') > -1){
+  esrutaPublica(url){
+    console.log(url)
+    if (url.indexOf('/login') > -1){
       return true
     }
-    if (router.url.indexOf('/usuario') > -1){
+    if (url.indexOf('usuario') > -1){
       return true
     }
     return false
