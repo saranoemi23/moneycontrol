@@ -11,8 +11,8 @@ Router.post('/login', (req, res) => {
   const redirect = req.body.redirect;
 
   const queryString = `select id, username from usuario
-    where username = ?
-    and password = ?`
+                        where username = ?
+                        and password = ?`
 
   connection.query(queryString, [user, pass], (err, rows) => {
     if(err){
@@ -71,12 +71,19 @@ Router.post('/add', (req, res) =>{
                       VALUES    (?,?,?);`
   connection.query(queryString, [username, password, nombre], (err, results, fields) =>{
       if (err){
-          console.log("Error al agregar la transaccion: "+ err)
+          if (err.errno == 1062) {
+            console.log("Error usuario ya existe: ", err)
+          res.status(500).json({
+            error:'duplicado'
+          })
+          return
+          }
+          console.log("Error al agregar el usuario: ", err)
           res.sendStatus(500)
           return
       }
-      console.log("Se agrego transaccion con id: ", results.insertId);
-      res.end()
+      console.log("Se agrego usuario con id: ", results.insertId);
+      res.json({id:results.insertId})
   } )
 });
 

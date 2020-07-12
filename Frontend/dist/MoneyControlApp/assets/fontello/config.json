@@ -1,0 +1,130 @@
+{
+  "name": "",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "242giivkgr3e6le7b2xqi2pkdruf85mu",
+      "css": "edit",
+      "code": 59392,
+      "src": "modernpics"
+    },
+    {
+      "uid": "74415da8e36ed0afcea9b2b1454f4176",
+      "css": "cancel-circled2",
+      "code": 59393,
+      "src": "elusive"
+    },
+    {
+      "uid": "8704cd847a47b64265b8bb110c8b4d62",
+      "css": "down-open",
+      "code": 59394,
+      "src": "entypo"
+    },
+    {
+      "uid": "c311c48d79488965b0fab7f9cd12b6b5",
+      "css": "left-open",
+      "code": 59395,
+      "src": "entypo"
+    },
+    {
+      "uid": "749e7d90a9182938180f1d2d8c33584e",
+      "css": "right-open",
+      "code": 59396,
+      "src": "entypo"
+    },
+    {
+      "uid": "9c7ff134960bb5a82404e4aeaab366d9",
+      "css": "up-open",
+      "code": 59397,
+      "src": "entypo"
+    },
+    {
+      "uid": "1gf923f9wvaezxmfon515dglxa3drf0e",
+      "css": "plus",
+      "code": 59398,
+      "src": "typicons"
+    },
+    {
+      "uid": "212ab54aac31030950fec3e2448ebee9",
+      "css": "money",
+      "code": 59399,
+      "src": "modernpics"
+    },
+    {
+      "uid": "2c5335c6e56b876139d7a58ab2f4b2fe",
+      "css": "bell",
+      "code": 59400,
+      "src": "entypo"
+    },
+    {
+      "uid": "abf264d54e3f10187167ebc0e833d12e",
+      "css": "up-outline",
+      "code": 59402,
+      "src": "typicons"
+    },
+    {
+      "uid": "ef47651da3866460f27baf85ae234e5c",
+      "css": "list",
+      "code": 59403,
+      "src": "iconic"
+    },
+    {
+      "uid": "3838a5aba604532d2dbae5904615ea39",
+      "css": "down",
+      "code": 59404,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "040e72500c863813088c9f9c9415f8e9",
+      "css": "up",
+      "code": 59405,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "1d9b2bb0d0621cd616139c6a441ed442",
+      "css": "down-outline",
+      "code": 59401,
+      "src": "typicons"
+    },
+    {
+      "uid": "bczb7qup4axmc490xmuuv8qdhcnbgeyf",
+      "css": "user",
+      "code": 59406,
+      "src": "typicons"
+    },
+    {
+      "uid": "cb89a11fa3722b7648ce26f40aaed8f0",
+      "css": "website",
+      "code": 59407,
+      "src": "elusive"
+    },
+    {
+      "uid": "d2c499942f8a7c037d5a94f123eeb478",
+      "css": "layers",
+      "code": 59408,
+      "src": "iconic"
+    },
+    {
+      "uid": "5f1e8c36dffb553902e0e5c0c71faf6b",
+      "css": "credit-card",
+      "code": 59410,
+      "src": "maki"
+    },
+    {
+      "uid": "8c9fbdd92132007cf2f5e13b7ecb38f0",
+      "css": "credit-card-1",
+      "code": 59409,
+      "src": "elusive"
+    },
+    {
+      "uid": "5adef5b3275fcd874b0815a0637c5800",
+      "css": "login",
+      "code": 61484,
+      "src": "mfglabs"
+    }
+  ]
+}

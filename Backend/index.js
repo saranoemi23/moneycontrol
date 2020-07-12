@@ -19,6 +19,7 @@ const TransaccionesRoutes = require('./routes/routes.transacciones');
 const CategoriasRoutes = require('./routes/routes.categorias');
 const AlertasRoutes = require('./routes/routes.alertas');
 const CuentasRoutes = require('./routes/routes.cuentas');
+const SuscripcionesRoutes = require('./routes/routes.suscripciones');
 
 let frontend = Path.join(__dirname,"../Frontend/dist/MoneyControlApp"); //ruta de los archivos que compile angular
 console.log(frontend);
@@ -45,6 +46,7 @@ app.use('/api/transacciones', TransaccionesRoutes);
 app.use('/api/categorias', CategoriasRoutes);
 app.use('/api/alertas', AlertasRoutes);
 app.use('/api/cuentas', CuentasRoutes);
+app.use('/api/suscripciones', SuscripcionesRoutes);
 
 
 if (process.env.NODE_ENV == 'production'){
