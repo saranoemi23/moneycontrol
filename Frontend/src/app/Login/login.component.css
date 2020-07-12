@@ -1,6 +1,5 @@
 .login-container {
     background: #04418C;
-    
 }
 
 ul.social-network {
@@ -84,11 +83,12 @@ a.socialIcon:hover,
     background-image: url("/assets/fondo.jpg");
     background-size: cover;
     background-attachment: fixed;
-    /* filter: blur(3px); */
-}   
+    min-height: 100%;
+}
 
 .login-container .wallpaper{
     backdrop-filter: blur(3px);
+    min-height: 100%;
 }
 
 .login-container .container{
@@ -100,8 +100,8 @@ a.socialIcon:hover,
     margin-top: 60px;
 }
 
-.login-container .card{
-    background-color: rgba(255, 255, 255, 75%);
+.login-container .card {
+    background-color: rgba(100%, 100%, 100%, 75%);
 }
 
 .login-container .boton-login{

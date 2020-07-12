@@ -18,7 +18,6 @@ export class LoginComponent {
   mostrarInfo = false;
 
   constructor(private router:Router) {
-    console.log('LoginComponent');
   }
-  
+
 }

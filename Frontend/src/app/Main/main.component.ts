@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 
 import axios from 'axios';
 import { config } from '../../config';
-import { identifierModuleUrl } from '@angular/compiler';
 
 const URL = config.backendURL() + "/usuarios";
 const URLTransacciones= config.backendURL() + "/transacciones"
@@ -16,14 +15,13 @@ const URLAlertas = config.backendURL() + "/alertas";
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  entradas= 0;
-  salidas= 0;
-  alertas= [];
+  entradas = 0;
+  salidas = 0;
+  alertas = [];
   anio: number = new Date().getFullYear();
-  montosugerido=0;
+  montosugerido = 0;
 
   constructor(private router:Router) {
-    console.log('MainComponent');
     this.cargarDatos();
   }
 
@@ -48,9 +46,6 @@ export class MainComponent implements OnInit {
   Cuentas() {
     this.router.navigate(['/cuentas', 'listar']);
   }
-  // Suscripciones() {
-  //   this.router.navigate(['/suscripcion', 'listar']);
-  // }
   CerrarSesion() {
     axios.get(URL + '/cerrarsesion')
     .then(()=> {
@@ -59,11 +54,9 @@ export class MainComponent implements OnInit {
   }
 
   cargarDatos() {
-
     axios.get(URLTransacciones + '/total', {
     })
     .then(request => {
-      console.log (request.data);
       this.entradas = request.data.entradas;
       this.salidas = request.data.salidas;
       this.montosugerido = request.data.montosugerido;
@@ -72,20 +65,17 @@ export class MainComponent implements OnInit {
     axios.get(URLAlertas + '/hoy', {
     })
     .then(request => {
-      console.log (request.data);
       this.alertas = request.data;
     })
   }
 
   marcarleido(alerta){
     axios.post(URLAlertas + '/marcarleido/' + alerta.id , {
-      id:alerta.id, 
+      id:alerta.id,
       repetir:alerta.repetir,
     })
     .then(request => {
-      console.log (request.data);
-      // this.alertas = request.data;
-      alerta.ocultar=true
+      alerta.ocultar = true;
     })
   }
 }

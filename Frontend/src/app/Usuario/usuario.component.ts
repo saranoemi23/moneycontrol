@@ -18,22 +18,21 @@ export class UsuarioComponent {
   redirect = config.frontendURL();
   infoPago = false;
 
-  username = ''
-  password = ''
-  nombre = ''
-  confirmarpass = ''
+  username = '';
+  password = '';
+  nombre = '';
+  confirmarpass = '';
 
-  tarjeta = ''
-  ccv = ''
-  titular = ''
-  mes = ''
-  ano = ''
-  ciudad = '' 
-  direccion = ''
-  idusuario = ''
+  tarjeta = '';
+  ccv = '';
+  titular = '';
+  mes = '';
+  ano = '';
+  ciudad = '';
+  direccion = '';
+  idusuario = '';
 
   constructor(private router:Router) {
-    console.log('UsuarioComponent');
   }
 
   guardarUsuario(){
@@ -55,33 +54,30 @@ export class UsuarioComponent {
     this.nombre = '';
     this.confirmarpass = '';
 
-    this.tarjeta= ''
-    this.ccv = ''
-    this.titular = ''
-    this.mes = '' 
-    this.ano = ''
-    this.ciudad = ''
-    this.direccion = ''
+    this.tarjeta= '';
+    this.ccv = '';
+    this.titular = '';
+    this.mes = '';
+    this.ano = '';
+    this.ciudad = '';
+    this.direccion = '';
   }
 
   guardar(){
-    this.guardarUsuario().then((res) => {
-    console.log(res.data) 
-    this.idusuario=res.data.id
-
-    return this.guardarSuscripcion() 
-    })
-    .then((res) => {
-    this.nuevo()
-    alert("Se registró usuario correctamente")
-    })
-    .catch((error) =>{
-      if (error.response.data.error == 'duplicado'){
-        alert("Usuario ya existe")
-      }
-      console.log(error.response.data);
-    })
-
+    this.guardarUsuario()
+      .then((res) => {
+        this.idusuario=res.data.id;
+        return this.guardarSuscripcion();
+      })
+      .then((res) => {
+        this.nuevo()
+        alert("Se registró usuario correctamente")
+      })
+      .catch((error) =>{
+        if (error.response.data.error == 'duplicado'){
+          alert("Usuario ya existe")
+        }
+      });
   }
 
   guardarSuscripcion(){

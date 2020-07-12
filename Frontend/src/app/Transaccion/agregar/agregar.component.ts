@@ -28,11 +28,9 @@ export class AgregarComponent implements OnInit {
   cuenta = '';
 
   constructor(private activatedRoute: ActivatedRoute){
-    console.log(this.activatedRoute.snapshot.paramMap);
     let id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log('id',id);
-     this.cargarDatos(id);
-     this.cargarFecha();
+    this.cargarDatos(id);
+    this.cargarFecha();
   }
 
   ngOnInit() {
@@ -77,15 +75,12 @@ export class AgregarComponent implements OnInit {
     axios.get(URL_cuentas + '/get')
     .then(request => {
       this.cuentas = request.data;
-      console.log(this.cuentas);
       this.seleccionarPrincipal();
     })
 
     if (!id) return
     axios.get(URL + '/get/' + id)
     .then(request => {
-      console.log("transaccion",request.data);
-      
       this.id = request.data[0].id;
       this.tipo = request.data[0].tipo
       this.monto=request.data[0].monto;
@@ -99,18 +94,15 @@ export class AgregarComponent implements OnInit {
   }
 
   seleccionarPrincipal(){
-    console.log("cuenta", this.cuenta);
     if (this.cuenta) return
-    console.log("cuenta", this.cuenta);
     let principal = this.cuentas.find(c => c.principal == 1);
     if (principal) {
       this.cuenta=principal.id;
     }
-    console.log(principal);
   }
 
   agregarNueva() {
-    if (!this.validar()) return 
+    if (!this.validar()) return;
 
     let a = this.tipo;
     let b = this.monto;
@@ -136,7 +128,7 @@ export class AgregarComponent implements OnInit {
         id: f
 
       })
-      
+
       // despues de guardar los datos
       .then(() => {
         alert('Guardado');
@@ -154,13 +146,11 @@ export class AgregarComponent implements OnInit {
 
   calcularPresupuesto(){
     let id_categoria = this.id_categoria
-    console.log(id_categoria);
 
-    if (!id_categoria)return
-    
+    if (!id_categoria) return;
+
     axios.get(URL_categorias + "/presupuesto/" + id_categoria)
     .then((resultado) => {
-      console.log(resultado);
       let info = resultado.data[0]
 
       if (!info) {
@@ -168,7 +158,6 @@ export class AgregarComponent implements OnInit {
         return
       }
       this.presupuesto = info.presupuesto - info.total
-      console.log(this.presupuesto);
     })
   }
 

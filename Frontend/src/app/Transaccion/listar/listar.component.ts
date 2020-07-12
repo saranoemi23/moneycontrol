@@ -53,8 +53,6 @@ export class ListarComponent implements OnInit {
     let total = 0;
 
     transacciones.forEach(element => {
-      console.log(element)
-      
       let valor = element.monto;
       let index = element.categoria;
       if(index=="Ingreso"){
@@ -62,20 +60,18 @@ export class ListarComponent implements OnInit {
       }
       if (sumas[index]){
         sumas [index] += valor
-      } 
+      }
       else {
         sumas [index] = valor
       }
       total+=valor;
     });
 
-    console.log(sumas);
     let labels = Object.keys(sumas);
     let values = Object.values(sumas);
 
-    labels=labels.map(function(label, n){
+    labels = labels.map(function(label, n){
       let valor: number = values[n]; //
-      console.log(valor, total);
       let porcentaje = Math.floor(valor/total*10000)/100;
       return label +" " + porcentaje + "%"
     });
@@ -85,8 +81,6 @@ export class ListarComponent implements OnInit {
       labels: labels,
       series: values,
     };
-    console.log(labels);
-    console.log(values);
     this.chartListo=true;
   }
 
@@ -98,7 +92,7 @@ export class ListarComponent implements OnInit {
     })
     .then(request => {
       this.transacciones = request.data;
-      
+
       let con = 0;
       if (tipo != '') {
         this.transacciones.forEach(transaccion => {
@@ -125,17 +119,15 @@ export class ListarComponent implements OnInit {
   }
 
   editar(id) {
-    console.log("editar",id);
-    this.router.navigate(['transacciones', 'editar', id]); 
+    this.router.navigate(['transacciones', 'editar', id]);
   }
 
   eliminar(id) {
-    if (confirm('Desea elimar registro?')) {
-      console.log("eliminar",id);
+    if (!confirm('Desea elimar registro?')) return;
+
     axios.delete(URL + '/delete/' + id).then(()=>{
       this.cargarDatos();
-    })
-    }
+    });
   }
 }
 

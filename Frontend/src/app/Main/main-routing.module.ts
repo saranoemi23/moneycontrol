@@ -6,11 +6,13 @@ import { MainComponent } from './main.component';
 import { CategoriasComponent } from '../Categoria/categoria.component';
 import { AlertasComponent } from '../Alerta/alerta.component';
 import { CuentasComponent } from '../Cuenta/cuenta.component';
+import { AuthGuardService } from './auth-guard.service';
 
 
 const routes: Routes = [
   {
     path: 'transacciones',
+    canActivate: [AuthGuardService],
     component: MainComponent,
     children: [
       { path: 'listar', component: ListarComponent},
@@ -22,6 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'categorias',
+    canActivate: [AuthGuardService],
     component: MainComponent,
     children: [
       { path: 'listar', component: CategoriasComponent},
@@ -29,6 +32,7 @@ const routes: Routes = [
   },
   {
     path: 'alertas',
+    canActivate: [AuthGuardService],
     component: MainComponent,
     children: [
       { path: 'listar', component: AlertasComponent},
@@ -36,6 +40,7 @@ const routes: Routes = [
   },
   {
     path: 'cuentas',
+    canActivate: [AuthGuardService],
     component: MainComponent,
     children: [
       { path: 'listar', component: CuentasComponent},

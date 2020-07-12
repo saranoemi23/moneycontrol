@@ -14,7 +14,7 @@ import { CategoriasComponent } from '../Categoria/categoria.component';
 import { AlertasComponent } from '../Alerta/alerta.component';
 import { CuentasComponent } from '../Cuenta/cuenta.component';
 import { LbdModule } from '../lbd/lbd.module';
-
+import { AuthGuardService } from './auth-guard.service';
 
 @NgModule({
   imports: [
@@ -31,6 +31,7 @@ import { LbdModule } from '../lbd/lbd.module';
     CategoriasComponent,
     AlertasComponent,
     CuentasComponent,
-  ]
+  ],
+  providers: [AuthGuardService],
 })
 export class MainModule { }
