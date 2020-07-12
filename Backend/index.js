@@ -58,5 +58,6 @@ if (process.env.NODE_ENV == 'production'){
 
 
 app.listen(3000, () =>{
+    console.log("env", process.env.NODE_ENV);
     console.log('Server on port 3000');
 });
