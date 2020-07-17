@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 const URL= config.backendURL() + "/transacciones"
 const URL_categorias= config.backendURL() + "/categorias"
 const URL_cuentas = config.backendURL() + "/cuentas"
+const URLTransacciones= config.backendURL() + "/transacciones"
 
 @Component({
   selector: 'app-agregar',
@@ -179,6 +180,25 @@ export class AgregarComponent implements OnInit {
 
   presupuestoValido(){
     return Number.isFinite(this.presupuesto)
+  }
+
+  consultar(){
+    axios.get(URLTransacciones + '/total', {
+    })
+    .then(request => {
+      let entradas = request.data.entradas;
+      let salidas = request.data.salidas;
+      let montosugerido = request.data.montosugerido;
+      let total = entradas - salidas - montosugerido;
+
+      if (this.monto > total){
+        alert('El monto excede su capacidad disponible para el mes actual \n Su disponible real es de: L' + total );
+      }
+      else
+      {
+        alert('El monto está dentro de su capacidad para el mes actual.');
+      }
+    })
   }
 }
 

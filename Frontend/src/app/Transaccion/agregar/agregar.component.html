@@ -39,7 +39,7 @@
             <div class="form-group">
                 <label class="col-form-label" for="id_categoria">Monto</label>
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                               <span class="input-group-text">LPS</span>
@@ -49,6 +49,11 @@
                     </div>
                     <div class="col-md-3">
                         <span *ngIf="presupuestoValido()">Presupuesto: {{presupuesto}}</span>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-primary"  (click)="consultar()">
+                            Consultar presupuesto
+                        </button>
                     </div>
                 </div>
             </div>
@@ -83,9 +88,9 @@
                 </div>
             </div>
             
-            <a type="button" class="btn btn-primary"  (click)="agregarNueva()">
+            <button type="button" class="btn btn-primary"  (click)="agregarNueva()">
                 Guardar
-            </a>
+            </button>
         </div>
     </div>
 </div>
