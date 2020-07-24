@@ -108,14 +108,24 @@
                             <input placeholder="Dirección" type="text" class="form-control" name="user" 
                             autocomplete="off" [required]="infoPago" [disabled]="!infoPago" [(ngModel)]="direccion">
                         </div>
-                        <p class="text-muted">
+                        <!-- <p class="text-muted">
                             <label>
-                                <input type="checkbox" [disabled]="!infoPago">
+                                <input type="checkbox" [disabled]="!infoPago" (click)="mostrarInfo=!mostrarInfo">
                                 Términos y condiciones
                             </label>
-                        </p>
+                        </p> -->
                     </div>
                 </div>
+
+                <!-- <div class="container" *ngIf="mostrarInfo" v-if="mostrarInfo" >
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>Terminos y condiciones</h4>
+                            <div>Mis terminos y condiciones.
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
             </div>
         </div>
         <br>

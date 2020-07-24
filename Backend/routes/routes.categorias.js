@@ -171,5 +171,4 @@ Router.get('/presupuesto/:idcategoria', (req, res) => {
     })
 });
 
-
 module.exports = Router;

@@ -3,6 +3,7 @@ const Router = express.Router();
 
 Router.post('/login', (req, res) => {
   const connection = req.app.get('connection');
+  const crypto = require('crypto');
 
   console.log("usuario: "+ req.body.user)
 
@@ -10,11 +11,13 @@ Router.post('/login', (req, res) => {
   const pass = req.body.pass;
   const redirect = req.body.redirect;
 
+  let paswordEncriptado = crypto.createHash('md5').update(pass).digest("hex")
+
   const queryString = `select id, username from usuario
                         where username = ?
                         and password = ?`
 
-  connection.query(queryString, [user, pass], (err, rows) => {
+  connection.query(queryString, [user, paswordEncriptado], (err, rows) => {
     if(err){
       console.log("Usuario no encontrado " + err)
       res.sendStatus(500)
@@ -55,6 +58,8 @@ Router.get('/cerrarsesion', (req, res) => {
 });
 
 Router.post('/add', (req, res) =>{
+
+  const crypto = require('crypto');
   const connection = req.app.get('connection');
 
   console.log("Tratando de agregar usuario..")
@@ -66,10 +71,12 @@ Router.post('/add', (req, res) =>{
   const password = req.body.password
   const nombre = req.body.nombre
 
+  let paswordEncriptado = crypto.createHash('md5').update(password).digest("hex")
+
   const queryString = `INSERT INTO money_control.usuario
                                 (username, password, nombre)
                       VALUES    (?,?,?);`
-  connection.query(queryString, [username, password, nombre], (err, results, fields) =>{
+  connection.query(queryString, [username, paswordEncriptado, nombre], (err, results, fields) =>{
       if (err){
           if (err.errno == 1062) {
             console.log("Error usuario ya existe: ", err)
@@ -85,6 +92,8 @@ Router.post('/add', (req, res) =>{
       console.log("Se agrego usuario con id: ", results.insertId);
       res.json({id:results.insertId})
   } )
+
+  
 });
 
 
